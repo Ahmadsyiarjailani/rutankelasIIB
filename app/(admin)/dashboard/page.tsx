@@ -11,6 +11,7 @@ import FotoMenu from './FotoMenu';
 import VideoMenu from './VideoMenu';
 import ProdukMenu from './ProdukMenu'; 
 import Profil from './Profil';
+import PtspMenu from './PtspMenu';
 
 interface NavItemProps { active: boolean; onClick: () => void; icon: string; label: string; }
 
@@ -222,6 +223,8 @@ export default function RutanSinjaiDashboard() {
   return (
     <div style={{ display: 'flex', height: '100vh', width: '100vw', backgroundColor: '#F4F7FE', overflow: 'hidden', fontFamily: "'Inter', sans-serif", position: 'fixed', top: 0, left: 0 }}>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      
       {isMobile && isSidebarVisible && (
         <div onClick={() => setIsSidebarVisible(false)} style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 999 }}></div>
       )}
@@ -237,6 +240,7 @@ export default function RutanSinjaiDashboard() {
           </div>
           <nav style={{ flex: 1, padding: '20px 15px', overflowY: 'auto', backgroundColor: '#FFF' }}>
             <NavItem active={activeMenu === 'dashboard'} onClick={() => { setActiveMenu('dashboard'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-chart-line" label="Dashboard" />
+            <NavItem active={activeMenu === 'ptsp'} onClick={() => { setActiveMenu('ptsp'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-clipboard-list" label="Riwayat PTSP" />
             <NavItem active={activeMenu === 'pengaduan'} onClick={() => { setActiveMenu('pengaduan'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-envelope-open-text" label="Pengaduan" />
             <NavItem active={activeMenu === 'wbp'} onClick={() => { setActiveMenu('wbp'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-users-rectangle" label="Data WBP" />
             <NavItem active={activeMenu === 'berita'} onClick={() => { setActiveMenu('berita'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-newspaper" label="Update Berita" />
@@ -275,6 +279,7 @@ export default function RutanSinjaiDashboard() {
 
           <div style={contentCard}>
             {activeMenu === 'dashboard' && <DashboardHome setActiveMenu={setActiveMenu} daftarWBP={daftarWBP} daftarPengaduan={daftarPengaduan} daftarBerita={daftarBerita} />}
+            {activeMenu === 'ptsp' && <PtspMenu />}
             {activeMenu === 'pengaduan' && <PengaduanMenu pengaduanForm={pengaduanForm} setPengaduanForm={setPengaduanForm} handleSimpanPengaduan={handleSimpanPengaduan} daftarPengaduan={daftarPengaduan} toggleStatusPengaduan={toggleStatusPengaduan} handleDelete={handleDelete} />}
             {activeMenu === 'wbp' && <WBPMenu wbpForm={wbpForm} setWbpForm={setWbpForm} handleSimpanWBP={handleSimpanWBP} daftarWBP={daftarWBP} handleDelete={handleDelete} handleUpdate={handleUpdateWBP} setSelectedImage={setSelectedImage} />}
             {activeMenu === 'berita' && <BeritaMenu judulBerita={judulBerita} setJudulBerita={setJudulBerita} kategoriBerita={kategoriBerita} setKategoriBerita={setKategoriBerita} setFileGambar={setFileGambar} isiBerita={isiBerita} setIsiBerita={setIsiBerita} handlePublikasiBerita={handlePublikasiBerita} daftarBerita={daftarBerita} toggleStatusBerita={toggleStatusBerita} handleDelete={handleDelete} />}
@@ -311,7 +316,7 @@ function NavItem({ active, onClick, icon, label }: NavItemProps) {
 const avatarCircle: React.CSSProperties = { width: '38px', height: '38px', borderRadius: '50%', backgroundColor: '#093661', color: '#FFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', flexShrink: 0 };
 const exitBtn: React.CSSProperties = { padding: '8px 15px', backgroundColor: '#FFF5F5', color: '#E53E3E', border: '1px solid #FED7D7', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', fontWeight: '600' };
 const topHeaderStyle: React.CSSProperties = { backgroundColor: '#FFF', borderBottom: '1px solid #EBEBEB', display: 'flex', alignItems: 'center', gap: '20px', flexShrink: 0 };
-const contentCard: React.CSSProperties = { backgroundColor: 'white', borderRadius: '20px', border: '1px solid #EBEBEB', minHeight: '400px', marginBottom: '40px' };
+const contentCard: React.CSSProperties = { backgroundColor: 'white', borderRadius: '20px', border: '1px solid #EBEBEB', minHeight: '400px', marginBottom: '40px', width: '100%' };
 const glassBanner: React.CSSProperties = { background: 'linear-gradient(135deg, #093661 0%, #0046E5 100%)', borderRadius: '20px', color: 'white', position: 'relative', overflow: 'hidden', marginBottom: '30px' };
 const glassCircle2: React.CSSProperties = { position: 'absolute', bottom: '-30px', left: '10%', width: '100px', height: '100px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' };
 const glassCircle1: React.CSSProperties = { position: 'absolute', top: '-20px', right: '-20px', width: '150px', height: '150px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' };

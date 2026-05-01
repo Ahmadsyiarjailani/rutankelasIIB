@@ -30,10 +30,44 @@ export default function PtspPage() {
     const today = new Date();
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
     setDataKunjungan(prev => ({ ...prev, tanggal: today.toLocaleDateString('id-ID', options) }));
+
+    if (typeof window !== 'undefined') {
+      const localData = localStorage.getItem('data_ptsp');
+      if (localData) {
+        const existingData = JSON.parse(localData);
+        const dataKunjunganOnly = existingData.filter((item: any) => item.kunjungan && item.kunjungan.nama !== "");
+        setCurrentAntrian(dataKunjunganOnly.length + 1);
+      }
+    }
   }, []);
 
-  const handleSelesaiDanCetak = () => {
-    window.print();
+  const handleSelesaiDanCetak = async () => {
+    try {
+      if (typeof window !== 'undefined') {
+        const localData = localStorage.getItem('data_ptsp');
+        const existingData = localData ? JSON.parse(localData) : [];
+        
+        const dataKunjunganOnly = existingData.filter((item: any) => item.kunjungan && item.kunjungan.nama !== "");
+        const newAntrian = dataKunjunganOnly.length + 1;
+
+        const dataBaru = {
+          id: Date.now(),
+          antrian: newAntrian,
+          kunjungan: dataKunjungan,
+          titipan: dataTitipan,
+          waktuInput: new Date().toLocaleString('id-ID')
+        };
+
+        const updatedData = [...existingData, dataBaru];
+        localStorage.setItem('data_ptsp', JSON.stringify(updatedData));
+        
+        alert("Data berhasil dikirim. Silakan tunggu panggilan petugas pelayanan.");
+        window.location.reload(); 
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Terjadi kesalahan saat mengirim data.");
+    }
   };
 
   const formatAntrian = (num: number) => num.toString().padStart(3, '0');
@@ -60,6 +94,13 @@ export default function PtspPage() {
     }
   };
 
+  const handleJumlahChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (/^\d*$/.test(val)) {
+      setDataTitipan({ ...dataTitipan, jumlah: val });
+    }
+  };
+
   return (
     <div className="ptsp-wrapper" style={{ padding: '60px 20px', backgroundColor: '#f8fafc', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       
@@ -75,7 +116,7 @@ export default function PtspPage() {
               <h2 style={{ fontSize: '16px', fontWeight: '700', color: '#093b77', marginBottom: '20px' }}>Data Pendaftaran Kunjungan</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <label style={labelStyle}>No. Antrian</label>
-                <input type="number" style={inputStyle} value={currentAntrian} onChange={(e) => setCurrentAntrian(Number(e.target.value))} />
+                <input type="number" className="no-spin" style={inputStyle} value={currentAntrian} readOnly />
                 <label style={labelStyle}>Nama Pengunjung</label>
                 <input style={inputStyle} value={dataKunjungan.nama} onChange={(e) => setDataKunjungan({...dataKunjungan, nama: e.target.value})} />
                 <label style={labelStyle}>Alamat Pengunjung</label>
@@ -86,10 +127,10 @@ export default function PtspPage() {
                 <input style={inputStyle} value={dataKunjungan.hubungan} onChange={(e) => setDataKunjungan({...dataKunjungan, hubungan: e.target.value})} />
                 <label style={labelStyle}>Pengikut (L | P | Anak | Bayi)</label>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '5px' }}>
-                  <input type="number" style={inputStyle} value={dataKunjungan.laki} onFocus={() => handleFocus('laki')} onBlur={() => handleBlur('laki')} onChange={(e) => setDataKunjungan({...dataKunjungan, laki: e.target.value})} />
-                  <input type="number" style={inputStyle} value={dataKunjungan.perempuan} onFocus={() => handleFocus('perempuan')} onBlur={() => handleBlur('perempuan')} onChange={(e) => setDataKunjungan({...dataKunjungan, perempuan: e.target.value})} />
-                  <input type="number" style={inputStyle} value={dataKunjungan.anak} onFocus={() => handleFocus('anak')} onBlur={() => handleBlur('anak')} onChange={(e) => setDataKunjungan({...dataKunjungan, anak: e.target.value})} />
-                  <input type="number" style={inputStyle} value={dataKunjungan.bayi} onFocus={() => handleFocus('bayi')} onBlur={() => handleBlur('bayi')} onChange={(e) => setDataKunjungan({...dataKunjungan, bayi: e.target.value})} />
+                  <input type="number" className="no-spin" style={inputStyle} value={dataKunjungan.laki} onFocus={() => handleFocus('laki')} onBlur={() => handleBlur('laki')} onChange={(e) => setDataKunjungan({...dataKunjungan, laki: e.target.value})} />
+                  <input type="number" className="no-spin" style={inputStyle} value={dataKunjungan.perempuan} onFocus={() => handleFocus('perempuan')} onBlur={() => handleBlur('perempuan')} onChange={(e) => setDataKunjungan({...dataKunjungan, perempuan: e.target.value})} />
+                  <input type="number" className="no-spin" style={inputStyle} value={dataKunjungan.anak} onFocus={() => handleFocus('anak')} onBlur={() => handleBlur('anak')} onChange={(e) => setDataKunjungan({...dataKunjungan, anak: e.target.value})} />
+                  <input type="number" className="no-spin" style={inputStyle} value={dataKunjungan.bayi} onFocus={() => handleFocus('bayi')} onBlur={() => handleBlur('bayi')} onChange={(e) => setDataKunjungan({...dataKunjungan, bayi: e.target.value})} />
                 </div>
               </div>
             </motion.div>
@@ -106,19 +147,18 @@ export default function PtspPage() {
                 <label style={labelStyle}>Jenis Barang</label>
                 <input style={inputStyle} value={dataTitipan.jenisBarang} onChange={(e) => setDataTitipan({...dataTitipan, jenisBarang: e.target.value})} />
                 <label style={labelStyle}>Jumlah</label>
-                <input style={inputStyle} value={dataTitipan.jumlah} onChange={(e) => setDataTitipan({...dataTitipan, jumlah: e.target.value})} />
+                <input style={inputStyle} value={dataTitipan.jumlah} onChange={handleJumlahChange} />
               </div>
             </motion.div>
           </div>
 
           <motion.div variants={itemVariants} style={{ textAlign: 'center', marginTop: '30px' }}>
-            <button onClick={handleSelesaiDanCetak} style={btnStyle}>Cetak & Simpan Resi</button>
+            <button onClick={handleSelesaiDanCetak} style={btnStyle}>Kirim</button>
           </motion.div>
         </motion.div>
       </div>
 
       <div className="print-only">
-        
         <div className="thermal-ticket page-break">
           <div className="ticket-header">
             <h3>BUKTI PENDAFTARARAN KUNJUNGAN</h3>
@@ -171,17 +211,26 @@ export default function PtspPage() {
             </tbody>
           </table>
           <div style={{textAlign:'center', marginTop:'20px', fontSize:'9px'}}>
-            <p>Harap tempel label ini pada kemasan makanan.</p>
-            <div style={{width:'60px', height:'60px', border:'1px solid #000', margin:'10px auto', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'8px'}}>QR CODE</div>
+            <div style={{marginTop:'15px', borderTop: '1px solid #000', paddingTop: '10px'}}>
+              <p>Petugas Pemeriksa</p>
+              <br/><br/>
+              <p>( ....................... )</p>
+            </div>
           </div>
         </div>
-
       </div>
 
       <style jsx global>{`
         .print-only { display: none; }
         .card-form { background: #fff; border-radius: 16px; padding: 24px; border: 1px solid #f1f5f9; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         
+        .no-spin::-webkit-inner-spin-button, 
+        .no-spin::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+        .no-spin { -moz-appearance: textfield; }
+
         @media screen {
           .form-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
         }
@@ -230,4 +279,4 @@ export default function PtspPage() {
 
 const labelStyle = { display: 'block', fontSize: '13px', fontWeight: '600', color: '#475569' };
 const inputStyle = { width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', outline: 'none', background: '#fff' };
-const btnStyle = { width: '100%', maxWidth: '300px', padding: '15px', backgroundColor: '#093661', color: 'white', border: 'none', borderRadius: '12px', cursor: 'pointer', fontWeight: '700' };
+const btnStyle = { width: '100%', maxWidth: '160px', padding: '12px', backgroundColor: '#093661', color: 'white', border: 'none', borderRadius: '12px', cursor: 'pointer', fontWeight: '700' };
