@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
+import { supabase } from '../../../../lib/supabase';
 
 export default function PtspPage() {
   const [currentAntrian, setCurrentAntrian] = useState(1);
@@ -31,42 +32,53 @@ export default function PtspPage() {
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
     setDataKunjungan(prev => ({ ...prev, tanggal: today.toLocaleDateString('id-ID', options) }));
 
-    if (typeof window !== 'undefined') {
-      const localData = localStorage.getItem('data_ptsp');
-      if (localData) {
-        const existingData = JSON.parse(localData);
-        const dataKunjunganOnly = existingData.filter((item: any) => item.kunjungan && item.kunjungan.nama !== "");
-        setCurrentAntrian(dataKunjunganOnly.length + 1);
+    const fetchCurrentAntrian = async () => {
+      try {
+        const { count, error } = await supabase
+          .from('riwayat_ptsp')
+          .select('*', { count: 'exact', head: true });
+        
+        if (!error && count !== null) {
+          setCurrentAntrian(count + 1);
+        }
+      } catch (err) {
+        console.error(err);
       }
-    }
+    };
+
+    fetchCurrentAntrian();
   }, []);
 
   const handleSelesaiDanCetak = async () => {
     try {
-      if (typeof window !== 'undefined') {
-        const localData = localStorage.getItem('data_ptsp');
-        const existingData = localData ? JSON.parse(localData) : [];
-        
-        const dataKunjunganOnly = existingData.filter((item: any) => item.kunjungan && item.kunjungan.nama !== "");
-        const newAntrian = dataKunjunganOnly.length + 1;
+      const { count, error: countError } = await supabase
+        .from('riwayat_ptsp')
+        .select('*', { count: 'exact', head: true });
 
-        const dataBaru = {
-          id: Date.now(),
-          antrian: newAntrian,
-          kunjungan: dataKunjungan,
-          titipan: dataTitipan,
-          waktuInput: new Date().toLocaleString('id-ID')
-        };
+      if (countError) throw countError;
+      const newAntrian = (count !== null ? count : 0) + 1;
 
-        const updatedData = [...existingData, dataBaru];
-        localStorage.setItem('data_ptsp', JSON.stringify(updatedData));
-        
-        alert("Data berhasil dikirim. Silakan tunggu panggilan petugas pelayanan.");
-        window.location.reload(); 
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Terjadi kesalahan saat mengirim data.");
+      const { error: insertError } = await supabase
+        .from('riwayat_ptsp')
+        .insert([
+          {
+            antrian: newAntrian,
+            kunjungan: dataKunjungan,
+            titipan: dataTitipan,
+            waktuInput: new Date().toLocaleString('id-ID')
+          }
+        ]);
+
+      if (insertError) throw insertError;
+
+      setCurrentAntrian(newAntrian);
+
+      alert("Data berhasil dikirim. Silakan tunggu panggilan petugas pelayanan.");
+      window.location.reload();
+
+    } catch (error: any) {
+      console.error("Supabase Error Details:", error.message || error);
+      alert(`Terjadi kesalahan saat mengirim data: ${error.message || "Koneksi terputus"}`);
     }
   };
 

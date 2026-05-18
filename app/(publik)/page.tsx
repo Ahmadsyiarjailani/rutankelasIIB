@@ -35,16 +35,13 @@ export default function LamanPublikRutan() {
   const [newsFromCMS, setNewsFromCMS] = useState<News[]>([]);
   
   const [dbRunningText, setDbRunningText] = useState<string>("Selamat Datang di Website Resmi Rutan Kelas II B Sinjai");
-
-  const banners: Banner[] = [
+  const [banners, setBanners] = useState<Banner[]>([
     {
       img: '/assets/Banner.png',
       headline: "SELAMAT DATANG DI LAMAN RESMI RUMAH TAHANAN NEGARA KELAS II B KABUPATEN SINJAI",
       showText: true
-    },
-    { img: '/assets/Banner2.png', showText: false },
-    { img: '/assets/Banner3.png', showText: false }
-  ];
+    }
+  ]);
 
   const newsDataDefault: News[] = [
     {
@@ -56,6 +53,22 @@ export default function LamanPublikRutan() {
   ];
 
   useEffect(() => {
+    const fetchBanners = async () => {
+      const { data } = await supabase
+        .from('daftar_banner')
+        .select('*')
+        .order('id', { ascending: false });
+
+      if (data && data.length > 0) {
+        const formattedBanners = data.map((item: any, index: number) => ({
+          img: item.url,
+          headline: index === 0 ? "SELAMAT DATANG DI LAMAN RESMI RUMAH TAHANAN NEGARA KELAS II B KABUPATEN SINJAI" : "",
+          showText: index === 0
+        }));
+        setBanners(formattedBanners);
+      }
+    };
+
     const fetchBeritaOnline = async () => {
       const { data } = await supabase
         .from('daftar_berita')
@@ -67,7 +80,7 @@ export default function LamanPublikRutan() {
           id: item.id,
           img: item.img || '/assets/berita1.png',
           headline: item.judul || item.headline,
-          meta: `Rutan Kelas IIB Sinjai | ${item.tanggal}`
+          meta: `Rutan Kelas IIB Sinjai | ${item.tanggal || ''}`
         }));
         setNewsFromCMS(formatted);
       }
@@ -89,6 +102,7 @@ export default function LamanPublikRutan() {
       if (data) setDbRunningText(data.content);
     };
 
+    fetchBanners();
     fetchBeritaOnline();
     fetchWBPCount();
     fetchRunningText();
@@ -133,7 +147,7 @@ export default function LamanPublikRutan() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
-    if (!isPaused) {
+    if (!isPaused && banners.length > 0) {
       interval = setInterval(() => {
         setCurrentSlide((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
       }, 5000);

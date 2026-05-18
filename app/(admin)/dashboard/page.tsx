@@ -12,6 +12,7 @@ import VideoMenu from './VideoMenu';
 import ProdukMenu from './ProdukMenu'; 
 import Profil from './Profil';
 import PtspMenu from './PtspMenu';
+import BannerMenu from './BannerMenu';
 
 interface NavItemProps { active: boolean; onClick: () => void; icon: string; label: string; }
 
@@ -38,6 +39,7 @@ export default function RutanSinjaiDashboard() {
   const [daftarKarya, setDaftarKarya] = useState<any[]>([]);
   const [daftarFoto, setDaftarFoto] = useState<any[]>([]);
   const [daftarVideo, setDaftarVideo] = useState<any[]>([]);
+  const [daftarBanner, setDaftarBanner] = useState<any[]>([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -57,6 +59,7 @@ export default function RutanSinjaiDashboard() {
     fetchKarya();
     fetchFoto();
     fetchVideo();
+    fetchBanner();
   }, []);
 
   const fetchPengaduan = async () => {
@@ -89,6 +92,11 @@ export default function RutanSinjaiDashboard() {
     if (data) setDaftarVideo(data);
   };
 
+  const fetchBanner = async () => {
+    const { data } = await supabase.from('daftar_banner').select('*').order('id', { ascending: false });
+    if (data) setDaftarBanner(data);
+  };
+
   const handleLogout = async () => {
     try {
       const res = await fetch('/api/wbp/logout', { method: 'POST' });
@@ -119,28 +127,17 @@ export default function RutanSinjaiDashboard() {
 
   const handleSimpanWBP = async () => {
     if(!wbpForm.nama) { alert("Nama wajib diisi"); return; }
-    
     let publicUrl = '';
-    
     if (wbpForm.foto && (wbpForm.foto as any).name) {
       const file = wbpForm.foto as File;
       const fileExt = file.name.split('.').pop();
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `wbp/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('images')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        alert("Gagal upload foto: " + uploadError.message);
-        return;
-      }
-
+      const { error: uploadError } = await supabase.storage.from('images').upload(filePath, file);
+      if (uploadError) { alert("Gagal upload foto: " + uploadError.message); return; }
       const { data: urlData } = supabase.storage.from('images').getPublicUrl(filePath);
       publicUrl = urlData.publicUrl;
     }
-
     const payload = { 
         nama: wbpForm.nama, 
         nik: wbpForm.nik, 
@@ -151,42 +148,17 @@ export default function RutanSinjaiDashboard() {
         status_wbp: wbpForm.status_wbp,
         foto_url: publicUrl
     };
-
     const { error } = await supabase.from('daftar_wbp').insert([payload]);
-    
     if (!error) { 
       alert(`Berhasil menyimpan data ${wbpForm.status_wbp}`); 
-      setWbpForm({ 
-        nama: '', nik: '', kasus: '', lama_pidana: '', 
-        ekspirasi: '', blok_kamar: '', status_wbp: 'Narapidana', foto: null 
-      }); 
+      setWbpForm({ nama: '', nik: '', kasus: '', lama_pidana: '', ekspirasi: '', blok_kamar: '', status_wbp: 'Narapidana', foto: null }); 
       fetchWBP(); 
-    } else {
-      alert("Error: " + error.message);
-    }
+    } else { alert("Error: " + error.message); }
   };
 
   const handleUpdateWBP = async (data: any) => {
-    const { error } = await supabase
-      .from('daftar_wbp')
-      .update({
-        nama: data.nama,
-        nik: data.nik,
-        kasus: data.kasus,
-        lama_pidana: data.lama_pidana,
-        ekspirasi: data.ekspirasi,
-        blok_kamar: data.blok_kamar,
-        status_wbp: data.status_wbp,
-        foto_url: data.foto_url
-      })
-      .eq('id', data.id);
-
-    if (!error) {
-      alert("Data berhasil diperbarui!");
-      fetchWBP();
-    } else {
-      alert("Gagal memperbarui: " + error.message);
-    }
+    const { error } = await supabase.from('daftar_wbp').update({ nama: data.nama, nik: data.nik, kasus: data.kasus, lama_pidana: data.lama_pidana, ekspirasi: data.ekspirasi, blok_kamar: data.blok_kamar, status_wbp: data.status_wbp, foto_url: data.foto_url }).eq('id', data.id);
+    if (!error) { alert("Data berhasil diperbarui!"); fetchWBP(); } else { alert("Gagal memperbarui: " + error.message); }
   };
 
   const handleSimpanPengaduan = async () => {
@@ -203,6 +175,7 @@ export default function RutanSinjaiDashboard() {
         else if (table === 'daftar_karya') fetchKarya();
         else if (table === 'daftar_foto') fetchFoto();
         else if (table === 'daftar_video') fetchVideo();
+        else if (table === 'daftar_banner') fetchBanner();
         else fetchPengaduan();
       }
     }
@@ -243,6 +216,7 @@ export default function RutanSinjaiDashboard() {
             <NavItem active={activeMenu === 'ptsp'} onClick={() => { setActiveMenu('ptsp'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-clipboard-list" label="Riwayat PTSP" />
             <NavItem active={activeMenu === 'pengaduan'} onClick={() => { setActiveMenu('pengaduan'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-envelope-open-text" label="Pengaduan" />
             <NavItem active={activeMenu === 'wbp'} onClick={() => { setActiveMenu('wbp'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-users-rectangle" label="Data WBP" />
+            <NavItem active={activeMenu === 'banner'} onClick={() => { setActiveMenu('banner'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-images" label="Banner Header" />
             <NavItem active={activeMenu === 'berita'} onClick={() => { setActiveMenu('berita'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-newspaper" label="Update Berita" />
             <NavItem active={activeMenu === 'profil'} onClick={() => { setActiveMenu('profil'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-user-tie" label="Profil" />
             <NavItem active={activeMenu === 'produk'} onClick={() => { setActiveMenu('produk'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-palette" label="Karya WBP" />
@@ -282,6 +256,7 @@ export default function RutanSinjaiDashboard() {
             {activeMenu === 'ptsp' && <PtspMenu />}
             {activeMenu === 'pengaduan' && <PengaduanMenu pengaduanForm={pengaduanForm} setPengaduanForm={setPengaduanForm} handleSimpanPengaduan={handleSimpanPengaduan} daftarPengaduan={daftarPengaduan} toggleStatusPengaduan={toggleStatusPengaduan} handleDelete={handleDelete} />}
             {activeMenu === 'wbp' && <WBPMenu wbpForm={wbpForm} setWbpForm={setWbpForm} handleSimpanWBP={handleSimpanWBP} daftarWBP={daftarWBP} handleDelete={handleDelete} handleUpdate={handleUpdateWBP} setSelectedImage={setSelectedImage} />}
+            {activeMenu === 'banner' && <BannerMenu daftarBanner={daftarBanner} fetchBanner={fetchBanner} handleDelete={handleDelete} />}
             {activeMenu === 'berita' && <BeritaMenu judulBerita={judulBerita} setJudulBerita={setJudulBerita} kategoriBerita={kategoriBerita} setKategoriBerita={setKategoriBerita} setFileGambar={setFileGambar} isiBerita={isiBerita} setIsiBerita={setIsiBerita} handlePublikasiBerita={handlePublikasiBerita} daftarBerita={daftarBerita} toggleStatusBerita={toggleStatusBerita} handleDelete={handleDelete} />}
             {activeMenu === 'foto' && <FotoMenu daftarFoto={daftarFoto} fetchFoto={fetchFoto} handleDelete={handleDelete} />}
             {activeMenu === 'video' && <VideoMenu daftarVideo={daftarVideo} fetchVideo={fetchVideo} handleDelete={handleDelete} />}

@@ -54,9 +54,8 @@ export default function RootLayout({ children }: LayoutProps) {
                 <a href="https://youtube.com/@rutansinjai3762?si=iec3-i3r6VG8yG3D" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-youtube"></i></a>
               </div>
               <div className="topbar-info">
-                <a href="tel:07247333024" className="info-item"><i className="fa-solid fa-phone"></i> 048222188</a>
-                <a href="https://wa.me/6281356640175" target="_blank" rel="noopener noreferrer" className="info-item"><i className="fa-brands fa-whatsapp"></i> +6281356640175</a>
-                <a href="mailto:rutanIIBsinjai@email.go.id" className="info-item"><i className="fa-solid fa-envelope"></i> rutan.kelas-IIB.sinjai@email.go.id</a>
+                <a href="https://wa.me/6281356640175" target="_blank" rel="noopener noreferrer" className="info-item"><i className="fa-brands fa-whatsapp"></i> +62 851-6768-7099</a>
+                <a href="mailto:rutanIIBsinjai@email.go.id" className="info-item"><i className="fa-solid fa-envelope"></i> Sinjairutan@yahoo.co.id</a>
               </div>
             </div>
           </div>
@@ -220,6 +219,9 @@ export default function RootLayout({ children }: LayoutProps) {
                     </iframe>
                   </div>
                 </div>
+              </div>
+              <div className="footer-copyright" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '40px', paddingTop: '20px', textAlign: 'center', fontSize: '14px', opacity: 0.8 }}>
+                <p>© 2026 Maganghub Kemnaker. All rights reserved.</p>
               </div>
             </div>
           </footer>
