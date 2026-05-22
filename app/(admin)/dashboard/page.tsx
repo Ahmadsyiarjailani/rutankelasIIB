@@ -194,21 +194,20 @@ export default function RutanSinjaiDashboard() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw', backgroundColor: '#F4F7FE', overflow: 'hidden', fontFamily: "'Inter', sans-serif", position: 'fixed', top: 0, left: 0 }}>
+    <div style={{ display: 'flex', height: '100vh', width: '100vw', backgroundColor: '#F4F7FE', overflow: 'hidden', fontFamily: '"Arial"', position: 'fixed', top: 0, left: 0 }}>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       
       {isMobile && isSidebarVisible && (
         <div onClick={() => setIsSidebarVisible(false)} style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 999 }}></div>
       )}
 
-      <aside style={{ width: isSidebarVisible ? '210px' : '0px', backgroundColor: '#FFFFFF', borderRight: isSidebarVisible ? '1px solid #EBEBEB' : 'none', display: 'flex', flexDirection: 'column', zIndex: 1000, transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)', overflow: 'hidden', flexShrink: 0, position: isMobile ? 'fixed' : 'relative', height: '100vh' }}>
+      <aside style={{ width: isSidebarVisible ? '210px' : '0px', backgroundColor: '#FFFFFF', borderRight: isSidebarVisible ? '1px solid #E2E8F0' : 'none', display: 'flex', flexDirection: 'column', zIndex: 1000, transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)', overflow: 'hidden', flexShrink: 0, position: isMobile ? 'fixed' : 'relative', height: '100vh' }}>
         <div style={{ width: '210px', height: '100%', display: 'flex', flexDirection: 'column' }}>
           <div style={{ padding: '27px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '0px', flexShrink: 0, backgroundColor: '#FFF' }}>
             <img src="/assets/logo.png" alt="Logo Rutan" style={{ width: '100px', height: '90px', objectFit: 'contain' }} />
-            <div>
-              <h2 style={{ fontSize: '15px', fontWeight: '700', color: '#093661', margin: 1 }}>Rutan Kelas II B</h2>
-              <p style={{ fontSize: '14px', color: '#A0AEC0', margin: 3 }}>Sinjai</p>
+            <div style={{ marginTop: '10px' }}>
+              <h2 style={{ fontSize: '16px', fontWeight: '700', color: '#093b77', margin: '0 0 2px 0', letterSpacing: '-0.3px' }}>Rutan</h2>
+              <p style={{ fontSize: '13px', color: '#A0AEC0', margin: 0, fontWeight: '700', letterSpacing: '-0.1px' }}>Kelas IIB Sinjai</p>
             </div>
           </div>
           <nav style={{ flex: 1, padding: '20px 15px', overflowY: 'auto', backgroundColor: '#FFF' }}>
@@ -224,20 +223,20 @@ export default function RutanSinjaiDashboard() {
             <NavItem active={activeMenu === 'video'} onClick={() => { setActiveMenu('video'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-video" label="Galeri Video" />
             <NavItem active={activeMenu === 'runningtext'} onClick={() => { setActiveMenu('runningtext'); if(isMobile) setIsSidebarVisible(false); }} icon="fa-solid fa-scroll" label="Running Text" />
           </nav>
-          <div style={{ padding: '20px 15px', borderTop: '1px solid #F1F1F1', display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#FFF', flexShrink: 0 }}>
+          <div style={{ padding: '20px 15px', borderTop: '1px solid #EDF2F7', display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#FFF', flexShrink: 0 }}>
             <div style={avatarCircle}>AD</div>
             <div style={{ flex: 1, overflow: 'hidden' }}>
-              <div style={{ fontSize: '12px', fontWeight: 'bold', color: '#2D3748', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Staf Admin</div>
+              <div style={{ fontSize: '13px', fontWeight: '700', color: '#2D3748', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: '-0.2px' }}>Staf Admin</div>
             </div>
-            <button onMouseDown={() => setActiveExit(true)} onMouseUp={() => setActiveExit(false)} onClick={handleLogout} style={{ ...exitBtn, transform: activeExit ? 'scale(0.92)' : 'scale(1)' }}>Keluar</button>
+            <button onMouseDown={() => setActiveExit(true)} onMouseUp={() => setActiveExit(false)} onClick={handleLogout} style={{ ...exitBtn, transform: activeExit ? 'scale(0.95)' : 'scale(1)' }}>Keluar</button>
           </div>
         </div>
       </aside>
 
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', height: '100vh' }}>
-        <header style={{ ...topHeaderStyle, height: isMobile ? '60px' : '75px', padding: isMobile ? '0 15px' : '0 30px', flexShrink: 0 }}>
-          <span onClick={() => setIsSidebarVisible(!isSidebarVisible)} style={{ cursor: 'pointer', fontSize: '22px', color: '#093661' }}><i className="fa-solid fa-bars"></i></span>
-          <div style={{ fontSize: isMobile ? '12px' : '14px', color: '#666', fontWeight: '500', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        <header style={{ ...topHeaderStyle, height: isMobile ? '60px' : '75px', padding: isMobile ? '0 15px' : '0 30px' }}>
+          <span onClick={() => setIsSidebarVisible(!isSidebarVisible)} style={{ cursor: 'pointer', fontSize: '22px', color: '#093b77', display: 'flex', alignItems: 'center' }}><i className="fa-solid fa-bars"></i></span>
+          <div style={{ fontSize: isMobile ? '12px' : '14px', color: '#4A5568', fontWeight: '700', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: '-0.2px' }}>
             Dashboard Manajemen Data & Informasi – Rutan Kelas IIB Sinjai
           </div>
         </header>
@@ -245,8 +244,8 @@ export default function RutanSinjaiDashboard() {
         <main style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '15px' : '30px', backgroundColor: '#F4F7FE' }}>
           <div style={{ ...glassBanner, padding: isMobile ? '25px' : '45px' }}>
             <div style={{ position: 'relative', zIndex: 2 }}>
-              <h2 style={{ margin: '0 0 10px 0', fontSize: isMobile ? '20px' : '26px', fontWeight: 'bold' }}>Sistem Informasi</h2>
-              <p style={{ margin: 0, opacity: 0.9, fontSize: isMobile ? '12px' : '14px' }}>Manajemen data warga binaan yang modern dan transparan.</p>
+              <h2 style={{ margin: '0 0 10px 0', fontSize: isMobile ? '20px' : '28px', fontWeight: '700', letterSpacing: '-0.5px' }}>Sistem Informasi</h2>
+              <p style={{ margin: 0, opacity: 0.9, fontSize: isMobile ? '13px' : '14px', letterSpacing: '-0.2px' }}>Manajemen data warga binaan yang modern dan transparan.</p>
             </div>
             <div style={glassCircle1}></div><div style={glassCircle2}></div>
           </div>
@@ -270,7 +269,7 @@ export default function RutanSinjaiDashboard() {
       {selectedImage && (
         <div onClick={() => setSelectedImage(null)} style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'zoom-out', padding: '20px' }}>
           <div style={{ position: 'relative', maxWidth: '90%', maxHeight: '90%' }}>
-            <img src={selectedImage} alt="Preview" style={{ maxWidth: '100%', maxHeight: '90vh', borderRadius: '12px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }} />
+            <img src={selectedImage} alt="Preview" style={{ maxWidth: '100%', maxHeight: '95vh', borderRadius: '12px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }} />
             <button onClick={() => setSelectedImage(null)} style={{ position: 'absolute', top: '-40px', right: '-40px', background: 'none', border: 'none', color: 'white', fontSize: '30px', cursor: 'pointer' }}><i className="fa-solid fa-xmark"></i></button>
           </div>
         </div>
@@ -281,17 +280,17 @@ export default function RutanSinjaiDashboard() {
 
 function NavItem({ active, onClick, icon, label }: NavItemProps) {
   return (
-    <div onClick={onClick} style={{ padding: '12px 18px', borderRadius: '10px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '5px', backgroundColor: active ? '#F0F4FF' : 'transparent', color: active ? '#093661' : '#5B6B79', fontWeight: active ? '700' : '400', whiteSpace: 'nowrap', transition: 'all 0.3s ease' }}>
-      <i className={icon} style={{ fontSize: '18px', width: '20px', textAlign: 'center' }}></i>
+    <div onClick={onClick} style={{ padding: '12px 18px', borderRadius: '10px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '5px', backgroundColor: active ? '#F0F4FF' : 'transparent', color: active ? '#093b77' : '#5B6B79', fontWeight: '700', whiteSpace: 'nowrap', transition: 'all 0.2s ease', fontFamily: '"Arial"', letterSpacing: '-0.2px' }}>
+      <i className={icon} style={{ fontSize: '16px', width: '20px', textAlign: 'center', color: active ? '#093b77' : '#718096' }}></i>
       <span style={{ fontSize: '14px' }}>{label}</span>
     </div>
   );
 }
 
-const avatarCircle: React.CSSProperties = { width: '38px', height: '38px', borderRadius: '50%', backgroundColor: '#093661', color: '#FFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', flexShrink: 0 };
-const exitBtn: React.CSSProperties = { padding: '8px 15px', backgroundColor: '#FFF5F5', color: '#E53E3E', border: '1px solid #FED7D7', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', fontWeight: '600' };
-const topHeaderStyle: React.CSSProperties = { backgroundColor: '#FFF', borderBottom: '1px solid #EBEBEB', display: 'flex', alignItems: 'center', gap: '20px', flexShrink: 0 };
-const contentCard: React.CSSProperties = { backgroundColor: 'white', borderRadius: '20px', border: '1px solid #EBEBEB', minHeight: '400px', marginBottom: '40px', width: '100%' };
-const glassBanner: React.CSSProperties = { background: 'linear-gradient(135deg, #093661 0%, #0046E5 100%)', borderRadius: '20px', color: 'white', position: 'relative', overflow: 'hidden', marginBottom: '30px' };
+const avatarCircle: React.CSSProperties = { width: '38px', height: '38px', borderRadius: '50%', backgroundColor: '#093b77', color: '#FFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '700', flexShrink: 0, fontFamily: '"Arial"' };
+const exitBtn: React.CSSProperties = { padding: '8px 15px', backgroundColor: '#FFF5F5', color: '#E53E3E', border: '1px solid #FED7D7', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', fontWeight: '700', fontFamily: '"Arial"', letterSpacing: '-0.2px', transition: '0.1s' };
+const topHeaderStyle: React.CSSProperties = { backgroundColor: '#FFF', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', gap: '20px', flexShrink: 0 };
+const contentCard: React.CSSProperties = { backgroundColor: 'white', borderRadius: '20px', border: '1px solid #E2E8F0', minHeight: '400px', marginBottom: '40px', width: '100%' };
+const glassBanner: React.CSSProperties = { background: 'linear-gradient(135deg, #093b77 0%, #06264d 100%)', borderRadius: '20px', color: 'white', position: 'relative', overflow: 'hidden', marginBottom: '30px' };
 const glassCircle2: React.CSSProperties = { position: 'absolute', bottom: '-30px', left: '10%', width: '100px', height: '100px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' };
 const glassCircle1: React.CSSProperties = { position: 'absolute', top: '-20px', right: '-20px', width: '150px', height: '150px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' };

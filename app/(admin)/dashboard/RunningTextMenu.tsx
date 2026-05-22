@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../../lib/supabase';
 
@@ -42,13 +43,13 @@ export default function RunningTextMenu() {
   };
 
   return (
-    <div style={{ padding: isMobile ? '20px' : '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: isMobile ? '20px' : '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: '"Arial"' }}>
       
       <div style={{ marginBottom: '35px' }}>
-        <h3 style={{ color: '#093661', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0' }}>
+        <h3 style={{ color: '#093b77', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0', fontFamily: '"Arial"', letterSpacing: '-0.5px' }}>
           Pengaturan Running Text
         </h3>
-        <p style={{ color: '#718096', fontSize: '14px', margin: 0 }}>
+        <p style={{ color: '#64748b', fontSize: '14px', margin: 0, fontFamily: '"Arial"', letterSpacing: '-0.2px' }}>
           Panel konfigurasi teks berjalan pada layar informasi utama.
         </p>
       </div>
@@ -64,7 +65,8 @@ export default function RunningTextMenu() {
                 ...inputStyle,
                 height: '120px',
                 resize: 'none',
-                padding: '16px'
+                padding: '16px',
+                fontFamily: '"Arial"'
               }}
               placeholder="Masukkan teks yang akan berjalan di landing page..."
             />
@@ -79,7 +81,7 @@ export default function RunningTextMenu() {
               ...buttonStyle,
               width: isMobile ? '100%' : 'fit-content',
               minWidth: '200px',
-              backgroundColor: loading ? '#718096' : (isHover ? '#0d4a85' : '#093661'),
+              backgroundColor: loading ? '#94a3b8' : (isHover ? '#072e5c' : '#093b77'),
               opacity: loading ? 0.7 : 1,
               cursor: loading ? 'not-allowed' : 'pointer'
             }}
@@ -92,6 +94,6 @@ export default function RunningTextMenu() {
   );
 }
 
-const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748' };
-const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', outline: 'none', fontSize: '14px', boxSizing: 'border-box' as 'border-box', backgroundColor: 'white', transition: '0.3s' };
-const buttonStyle: any = { padding: '16px 30px', color: 'white', border: 'none', borderRadius: '12px', fontSize: '15px', fontWeight: '800', cursor: 'pointer', transition: '0.3s' };
+const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#093b77', fontFamily: '"Arial"', letterSpacing: '-0.1px' };
+const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', outline: 'none', fontSize: '14px', boxSizing: 'border-box' as 'border-box', backgroundColor: 'white', transition: '0.3s', fontFamily: '"Arial"', color: '#475569', letterSpacing: '-0.2px' };
+const buttonStyle: any = { padding: '16px 30px', color: 'white', border: 'none', borderRadius: '12px', fontSize: '15px', fontWeight: '700', cursor: 'pointer', transition: '0.3s', fontFamily: '"Arial"', letterSpacing: '-0.1px' };

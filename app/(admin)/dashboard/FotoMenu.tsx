@@ -66,11 +66,11 @@ export default function FotoMenu({ daftarFoto = [], fetchFoto, handleDelete }: F
   };
 
   return (
-    <div style={{ padding: '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: isMobile ? '20px' : '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: '"Arial"' }}>
       
       <div style={{ marginBottom: '35px' }}>
-        <h3 style={{ color: '#093661', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0' }}>Galeri Foto</h3>
-        <p style={{ color: '#718096', fontSize: '14px', margin: 0 }}>Kelola dan publikasikan dokumentasi kegiatan ke website publik.</p>
+        <h3 style={{ color: '#093b77', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0', letterSpacing: '-0.5px' }}>Galeri Foto</h3>
+        <p style={{ color: '#718096', fontSize: '14px', margin: 0, letterSpacing: '-0.2px' }}>Kelola dan publikasikan dokumentasi kegiatan ke website publik.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '20px', padding: '30px', backgroundColor: '#F8FAFC', borderRadius: '18px', border: '1px solid #E2E8F0' }}>
@@ -100,7 +100,9 @@ export default function FotoMenu({ daftarFoto = [], fetchFoto, handleDelete }: F
           onMouseLeave={() => setIsHover(false)}
           style={{ 
             ...buttonStyle, 
-            backgroundColor: loading ? '#A0AEC0' : (isHover ? '#0d4a85' : '#093661') 
+            backgroundColor: loading ? '#A0AEC0' : (isHover ? '#072e5c' : '#093b77'),
+            gridColumn: isMobile ? 'span 1' : 'span 2',
+            transition: '0.2s'
           }}
         >
           {loading ? 'Sedang Mengunggah...' : 'Upload ke Galeri Foto'}
@@ -110,7 +112,7 @@ export default function FotoMenu({ daftarFoto = [], fetchFoto, handleDelete }: F
       <div style={{ height: '1px', backgroundColor: '#EDF2F7', margin: '45px 0' }} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
-        <h4 style={{ fontSize: '18px', fontWeight: '800', color: '#2D3748', margin: 0 }}>
+        <h4 style={{ fontSize: '18px', fontWeight: '700', color: '#093b77', margin: 0, letterSpacing: '-0.3px' }}>
           Foto Terbit
         </h4>
       </div>
@@ -119,9 +121,9 @@ export default function FotoMenu({ daftarFoto = [], fetchFoto, handleDelete }: F
         <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
           <thead>
             <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #EDF2F7' }}>
-              <th style={{ ...thStyle, width: '20%' }}>PRATINJAU</th>
-              <th style={{ ...thStyle, width: '60%' }}>KETERANGAN</th>
-              <th style={{ ...thStyle, textAlign: 'center', width: '20%' }}>NAVIGASI</th>
+              <th style={{ ...thStyle, width: '25%', textAlign: 'left' }}>PRATINJAU</th>
+              <th style={{ ...thStyle, width: '55%', textAlign: 'left' }}>KETERANGAN</th>
+              <th style={{ ...thStyle, width: '20%', textAlign: 'center' }}>NAVIGASI</th>
             </tr>
           </thead>
           <tbody>
@@ -131,7 +133,7 @@ export default function FotoMenu({ daftarFoto = [], fetchFoto, handleDelete }: F
                   <td style={tdStyle}>
                     <img src={foto.url} alt="galeri" style={{ width: '80px', height: '50px', objectFit: 'cover', borderRadius: '8px' }} />
                   </td>
-                  <td style={{ ...tdStyle, fontWeight: '500', color: '#4A5568' }}>{foto.keterangan}</td>
+                  <td style={{ ...tdStyle, fontWeight: '700', color: '#4A5568', letterSpacing: '-0.2px', lineHeight: '1.2' }}>{foto.keterangan}</td>
                   <td style={{ ...tdStyle, textAlign: 'center' }}>
                     <button 
                       onClick={() => handleDelete(foto.id, 'daftar_foto')} 
@@ -144,7 +146,7 @@ export default function FotoMenu({ daftarFoto = [], fetchFoto, handleDelete }: F
               ))
             ) : (
               <tr>
-                <td colSpan={3} style={{ textAlign: 'center', padding: '100px 20px', color: '#A0AEC0', fontSize: '14px' }}>
+                <td colSpan={3} style={{ textAlign: 'center', padding: '60px 20px', color: '#A0AEC0', fontSize: '14px', verticalAlign: 'middle', letterSpacing: '-0.2px' }}>
                   Belum ada foto yang diunggah.
                 </td>
               </tr>
@@ -156,9 +158,9 @@ export default function FotoMenu({ daftarFoto = [], fetchFoto, handleDelete }: F
   );
 }
 
-const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748' };
-const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', boxSizing: 'border-box' as 'border-box' };
-const buttonStyle: any = { gridColumn: 'span 2', padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '800', cursor: 'pointer', fontSize: '15px', transition: '0.3s' };
-const thStyle = { padding: '18px 20px', textAlign: 'left' as 'left', fontSize: '11px', fontWeight: '800', color: '#718096', textTransform: 'uppercase' as 'uppercase', letterSpacing: '1px' };
-const tdStyle = { padding: '20px', fontSize: '14px' };
-const deleteBtnStyle = { color: '#E53E3E', border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px' };
+const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', boxSizing: 'border-box' as 'border-box', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const buttonStyle: any = { padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', fontSize: '15px', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const thStyle = { padding: '18px 20px', fontSize: '11px', fontWeight: '700', color: '#718096', letterSpacing: '0.5px', fontFamily: '"Arial"' };
+const tdStyle = { padding: '20px', fontSize: '14px', fontFamily: '"Arial"' };
+const deleteBtnStyle = { color: '#E53E3E', border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', fontFamily: '"Arial"', letterSpacing: '-0.2px' };

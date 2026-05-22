@@ -143,7 +143,7 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
   };
 
   return (
-    <div style={{ padding: '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: '"Arial"' }}>
       <style>{`
         .btn-act:active {
           filter: brightness(0.85);
@@ -153,8 +153,8 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
       `}</style>
       
       <div style={{ marginBottom: '35px' }}>
-        <h3 style={{ color: '#093661', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0' }}>Manajemen Karya WBP</h3>
-        <p style={{ color: '#718096', fontSize: '14px', margin: 0 }}>Kelola dan publikasikan produk hasil karya warga binaan ke galeri publik.</p>
+        <h3 style={{ color: '#093b77', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0', letterSpacing: '-0.5px' }}>Manajemen Karya WBP</h3>
+        <p style={{ color: '#718096', fontSize: '14px', margin: 0, letterSpacing: '-0.2px' }}>Kelola dan publikasikan produk hasil karya warga binaan ke galeri publik.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '30px', backgroundColor: '#F8FAFC', borderRadius: '18px', border: '1px solid #E2E8F0' }}>
@@ -187,7 +187,7 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
           onMouseLeave={() => setIsHover(false)}
           style={{ 
             ...buttonStyle, 
-            backgroundColor: loading ? '#A0AEC0' : (isHover ? '#0d4a85' : '#093661'),
+            backgroundColor: loading ? '#A0AEC0' : (isHover ? '#072e5c' : '#093b77'),
             transition: '0.2s'
           }}
         >
@@ -198,18 +198,18 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
       <div style={{ height: '1px', backgroundColor: '#EDF2F7', margin: '45px 0' }} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
-        <h4 style={{ fontSize: '18px', fontWeight: '800', color: '#2D3748', margin: 0 }}>Daftar Produk Aktif</h4>
+        <h4 style={{ fontSize: '18px', fontWeight: '700', color: '#093b77', margin: 0, letterSpacing: '-0.3px' }}>Daftar Produk Aktif</h4>
       </div>
 
       <div style={{ border: '1px solid #E2E8F0', borderRadius: '16px', overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
           <thead>
             <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #EDF2F7' }}>
-              <th style={{ ...thStyle, width: '15%' }}>FOTO</th>
-              <th style={{ ...thStyle, width: '30%' }}>NAMA PRODUK</th>
-              <th style={{ ...thStyle, width: '20%' }}>KATEGORI</th>
-              <th style={{ ...thStyle, width: '15%' }}>HARGA</th>
-              <th style={{ ...thStyle, textAlign: 'center', width: '20%' }}>NAVIGASI</th>
+              <th style={{ ...thStyle, width: '15%' }}>Foto</th>
+              <th style={{ ...thStyle, width: '30%' }}>Nama Produk</th>
+              <th style={{ ...thStyle, width: '20%' }}>Kategori</th>
+              <th style={{ ...thStyle, width: '15%' }}>Harga</th>
+              <th style={{ ...thStyle, textAlign: 'center', width: '20%' }}>Navigasi</th>
             </tr>
           </thead>
           <tbody>
@@ -218,7 +218,7 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
                 <tr key={item.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
                   <td style={tdStyle}>
                     {editingId === item.id ? (
-                      <input type="file" accept="image/*" onChange={handleEditFileChange} style={{ fontSize: '10px', width: '100%' }} />
+                      <input type="file" accept="image/*" onChange={handleEditFileChange} style={{ fontSize: '10px', width: '100%', fontFamily: '"Arial"' }} />
                     ) : (
                       <img src={item.img || item.image_url} alt="produk" style={{ width: '60px', height: '45px', objectFit: 'cover', borderRadius: '8px' }} />
                     )}
@@ -227,21 +227,21 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
                     {editingId === item.id ? (
                       <input style={inlineInputStyle} value={editForm.nama} onChange={(e) => setEditForm({...editForm, nama: e.target.value})} />
                     ) : (
-                      <div style={{ fontWeight: '800', color: '#2D3748', fontSize: '14px' }}>{item.nama}</div>
+                      <div style={{ fontWeight: '700', color: '#2D3748', fontSize: '14px', letterSpacing: '-0.3px' }}>{item.nama}</div>
                     )}
                   </td>
                   <td style={tdStyle}>
                     {editingId === item.id ? (
                       <input style={inlineInputStyle} value={editForm.kategori} onChange={(e) => setEditForm({...editForm, kategori: e.target.value})} />
                     ) : (
-                      <div style={{ fontSize: '13px', color: '#4A5568', fontWeight: '500' }}>{item.kategori}</div>
+                      <div style={{ fontSize: '13px', color: '#4A5568', fontWeight: '700', letterSpacing: '-0.2px' }}>{item.kategori}</div>
                     )}
                   </td>
                   <td style={tdStyle}>
                     {editingId === item.id ? (
                       <input style={inlineInputStyle} value={editForm.harga} onChange={(e) => setEditForm({...editForm, harga: e.target.value})} />
                     ) : (
-                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#2D3748' }}>{item.harga}</div>
+                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#2D3748', letterSpacing: '-0.2px' }}>{item.harga}</div>
                     )}
                   </td>
                   <td style={{ ...tdStyle, textAlign: 'center' }}>
@@ -265,7 +265,7 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
               ))
             ) : (
               <tr>
-                <td colSpan={5} style={{ textAlign: 'center', padding: '100px 20px', color: '#A0AEC0', fontSize: '14px' }}>Data produk belum tersedia</td>
+                <td colSpan={5} style={{ textAlign: 'center', padding: '100px 20px', color: '#A0AEC0', fontSize: '14px', letterSpacing: '-0.2px' }}>Data produk belum tersedia</td>
               </tr>
             )}
           </tbody>
@@ -275,11 +275,11 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
   );
 }
 
-const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748' };
-const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', boxSizing: 'border-box' as 'border-box' };
-const inlineInputStyle = { width: '100%', padding: '5px 8px', borderRadius: '5px', border: '1px solid #093661', fontSize: '13px' };
-const buttonStyle: any = { gridColumn: 'span 2', padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '800', cursor: 'pointer', fontSize: '15px' };
-const thStyle = { padding: '18px 20px', textAlign: 'left' as 'left', fontSize: '11px', fontWeight: '800', color: '#718096', textTransform: 'uppercase' as 'uppercase', letterSpacing: '1px' };
-const tdStyle = { padding: '20px', fontSize: '14px' };
-const btnEditInline = { color: '#093661', border: '1px solid #E2E8F0', background: 'white', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '5px' };
-const btnDeleteInline = { color: '#E53E3E', border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '5px' };
+const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', boxSizing: 'border-box' as 'border-box', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const inlineInputStyle = { width: '100%', padding: '5px 8px', borderRadius: '5px', border: '1px solid #093b77', fontSize: '13px', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const buttonStyle: any = { gridColumn: 'span 2', padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', fontSize: '15px', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const thStyle = { padding: '18px 20px', textAlign: 'left' as 'left', fontSize: '11px', fontWeight: '700', color: '#718096', letterSpacing: '0.5px', fontFamily: '"Arial"' };
+const tdStyle = { padding: '20px', fontSize: '14px', fontFamily: '"Arial"' };
+const btnEditInline = { color: '#093b77', border: '1px solid #E2E8F0', background: 'white', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '5px', fontFamily: '"Arial"', letterSpacing: '-0.1px' };
+const btnDeleteInline = { color: '#E53E3E', border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '5px', fontFamily: '"Arial"', letterSpacing: '-0.1px' };

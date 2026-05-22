@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from 'react';
 
 export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWBP, handleDelete, handleUpdate, setSelectedImage }: any) {
@@ -68,7 +69,7 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
           }
         }
       } catch (error) {
-        console.error("Gagal mengunggah foto baru:", error);
+        console.error(error);
       }
     }
 
@@ -112,10 +113,9 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
         </div>
 
         <FormInput label="Nama Lengkap" placeholder="Nama Lengkap WBP" value={wbpForm.nama} onChange={(e: any) => setWbpForm({...wbpForm, nama: e.target.value})} />
-        <FormInput label="No. REG" placeholder="Contoh: AIV.38/2025" value={wbpForm.nik} onChange={(e: any) => setWbpForm({...wbpForm, nik: e.target.value})} />
-        <FormInput label="Perkara / Pasal" placeholder="Contoh: UU No. 35 Tahun 2009" value={wbpForm.kasus} onChange={(e: any) => setWbpForm({...wbpForm, kasus: e.target.value})} />
-        <FormInput label="Putusan Pidana" placeholder="... Thn ... Bln ... Hr" value={wbpForm.lama_pidana} onChange={(e: any) => setWbpForm({...wbpForm, lama_pidana: e.target.value})} />
-        <FormInput label="Tanggal Ekspirasi" type="date" value={wbpForm.ekspirasi} onChange={(e: any) => setWbpForm({...wbpForm, ekspirasi: e.target.value})} />
+        <FormInput label="2/3 Masa Pidana" placeholder="Contoh: BI.05/2026" value={wbpForm.nik} onChange={(e: any) => setWbpForm({...wbpForm, nik: e.target.value})} />
+        <FormInput label="Perkara" placeholder="Contoh: Maling" value={wbpForm.kasus} onChange={(e: any) => setWbpForm({...wbpForm, kasus: e.target.value})} />
+        <FormInput label="Tanggal Bebas" type="date" value={wbpForm.ekspirasi} onChange={(e: any) => setWbpForm({...wbpForm, ekspirasi: e.target.value})} />
         
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={labelStyle}>Foto WBP</label>
@@ -140,7 +140,7 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
           style={{ 
             ...submitButtonStyle, 
             gridColumn: isMobile ? 'span 1' : 'span 2',
-            backgroundColor: isHover ? '#0d4a85' : '#093661'
+            backgroundColor: isHover ? '#072e5c' : '#093b77'
           }}
         >
           Simpan Data {wbpForm.status_wbp || 'Narapidana'}
@@ -151,7 +151,7 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
 
       <div style={{ ...tableHeaderActionStyle, flexDirection: isMobile ? 'column' : 'row' }}>
         <h4 style={tableTitleStyle}>
-          Daftar Aktif : <span style={{color: '#093661', marginLeft: '5px'}}>{viewFilter}</span>
+          Daftar Aktif : <span style={{color: '#093b77', marginLeft: '5px'}}>{viewFilter}</span>
         </h4>
         
         <div style={{ display: 'flex', gap: '15px', width: isMobile ? '100%' : 'auto', alignItems: 'center' }}>
@@ -159,7 +159,7 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
             <i className="fa fa-search" style={searchIconStyle}></i>
             <input 
               type="text" 
-              placeholder="Cari Nama atau No. REG..." 
+              placeholder="Cari Nama atau Data WBP..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{ ...searchInputStyle, width: isMobile ? '100%' : '250px' }}
@@ -167,7 +167,7 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
           </div>
 
           <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-            <span style={{fontSize: '12px', fontWeight: '700', color: '#718096'}}>TAMPILKAN:</span>
+            <span style={{fontSize: '12px', fontWeight: '700', color: '#64748b', fontFamily: '"Arial"'}}>TAMPILKAN:</span>
             <select style={filterSelectStyle} value={viewFilter} onChange={(e) => setViewFilter(e.target.value)}>
               <option value="Narapidana">Narapidana</option>
               <option value="Tahanan">Tahanan</option>
@@ -181,10 +181,10 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
           <thead>
             <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #EDF2F7' }}>
               <th style={{ ...thStyle, width: '80px' }}>FOTO</th>
-              <th style={{ ...thStyle, width: '25%' }}>BIODATA & NO. REG</th>
-              <th style={{ ...thStyle, width: '25%' }}>KASUS / PERKARA</th>
-              <th style={{ ...thStyle, width: '15%' }}>MASA PIDANA</th>
-              <th style={{ ...thStyle, width: '15%' }}>EKSPIRASI</th>
+              <th style={{ ...thStyle, width: '30%' }}>NAMA LENGKAP</th>
+              <th style={{ ...thStyle, width: '25%' }}>2/3 MASA PIDANA</th>
+              <th style={{ ...thStyle, width: '30%' }}>PERKARA</th>
+              <th style={{ ...thStyle, width: '15%' }}>TANGGAL BEBAS</th>
               <th style={{ ...thStyle, textAlign: 'center', width: '150px' }}>NAVIGASI</th>
             </tr>
           </thead>
@@ -206,12 +206,18 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
                   </td>
                   <td style={tdStyle}>
                     {editId === item.id ? (
+                      <input style={editInputStyle} value={tempData.nama} onChange={(e) => setTempData({...tempData, nama: e.target.value})} placeholder="Nama" />
+                    ) : (
+                      <div style={{ fontWeight: '700', fontSize: '14px', color: '#093b77', fontFamily: '"Arial"', letterSpacing: '-0.2px' }}>{item.nama}</div>
+                    )}
+                  </td>
+                  <td style={tdStyle}>
+                    {editId === item.id ? (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                        <input style={editInputStyle} value={tempData.nama} onChange={(e) => setTempData({...tempData, nama: e.target.value})} placeholder="Nama" />
-                        <input style={editInputStyle} value={tempData.nik} onChange={(e) => setTempData({...tempData, nik: e.target.value})} placeholder="No. Reg" />
+                        <input style={editInputStyle} value={tempData.nik} onChange={(e) => setTempData({...tempData, nik: e.target.value})} placeholder="2/3 Masa Pidana" />
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                          <label style={{ fontSize: '10px', fontWeight: 'bold', color: '#718096' }}>GANTI / HAPUS FOTO:</label>
-                          <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, true)} style={{ fontSize: '11px' }} />
+                          <label style={{ fontSize: '10px', fontWeight: '700', color: '#64748b', fontFamily: '"Arial"' }}>GANTI / HAPUS FOTO:</label>
+                          <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, true)} style={{ fontSize: '11px', fontFamily: '"Arial"' }} />
                           {tempData.foto_url && (
                             <button onClick={() => setTempData({...tempData, foto: null, foto_url: ""})} style={deleteFotoTextStyle}>
                               <i className="fa fa-trash-can"></i> Hapus Foto
@@ -220,31 +226,21 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
                         </div>
                       </div>
                     ) : (
-                      <div>
-                        <div style={{ fontWeight: '700', color: '#2D3748', fontSize: '14px' }}>{item.nama}</div>
-                        <div style={{ fontSize: '11px', color: '#093661', fontWeight: '800', marginTop: '3px' }}>{item.nik}</div>
-                      </div>
+                      <div style={{ fontSize: '13px', color: '#475569', fontWeight: '700', fontFamily: '"Arial"', letterSpacing: '-0.2px' }}>{item.nik}</div>
                     )}
                   </td>
                   <td style={tdStyle}>
                     {editId === item.id ? (
-                      <input style={editInputStyle} value={tempData.kasus} onChange={(e) => setTempData({...tempData, kasus: e.target.value})} />
+                      <input style={editInputStyle} value={tempData.kasus} onChange={(e) => setTempData({...tempData, kasus: e.target.value})} placeholder="Perkara" />
                     ) : (
-                      <div style={{ fontSize: '13px', color: '#4A5568', fontWeight: '500' }}>{item.kasus}</div>
-                    )}
-                  </td>
-                  <td style={tdStyle}>
-                    {editId === item.id ? (
-                      <input style={editInputStyle} value={tempData.lama_pidana} onChange={(e) => setTempData({...tempData, lama_pidana: e.target.value})} />
-                    ) : (
-                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#2D3748' }}>{item.lama_pidana}</div>
+                      <div style={{ fontSize: '13px', color: '#475569', fontWeight: '400', fontFamily: '"Arial"', letterSpacing: '-0.1px' }}>{item.kasus}</div>
                     )}
                   </td>
                   <td style={tdStyle}>
                     {editId === item.id ? (
                       <input type="date" style={editInputStyle} value={tempData.ekspirasi} onChange={(e) => setTempData({...tempData, ekspirasi: e.target.value})} />
                     ) : (
-                      <span style={badgeStyle}>{item.ekspirasi || '-'}</span>
+                      <span style={{ ...badgeStyle, backgroundColor: '#FFF5F5', color: '#C53030' }}>{item.ekspirasi || '-'}</span>
                     )}
                   </td>
                   <td style={{ ...tdStyle, textAlign: 'center' }}>
@@ -279,7 +275,7 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
                             ...btnEditInline,
                             backgroundColor: hoverBtnId === `edit-${item.id}` ? '#EBF8FF' : 'white',
                             borderColor: hoverBtnId === `edit-${item.id}` ? '#3182CE' : '#E2E8F0',
-                            color: hoverBtnId === `edit-${item.id}` ? '#3182CE' : '#093661'
+                            color: hoverBtnId === `edit-${item.id}` ? '#3182CE' : '#093b77'
                           }}>Edit</button>
                       )}
                       <button 
@@ -298,7 +294,7 @@ export default function WBPMenu({ wbpForm, setWbpForm, handleSimpanWBP, daftarWB
               ))
             ) : (
               <tr>
-                <td colSpan={6} style={{ textAlign: 'center', padding: '100px 20px', color: '#A0AEC0', fontStyle: 'italic' }}>Data tidak ditemukan</td>
+                <td colSpan={6} style={{ textAlign: 'center', padding: '100px 20px', color: '#A0AEC0', fontStyle: 'italic', fontFamily: '"Arial"' }}>Data tidak ditemukan</td>
               </tr>
             )}
           </tbody>
@@ -317,30 +313,30 @@ function FormInput({ label, value, ...props }: any) {
   );
 }
 
-const removeFotoBadgeStyle: any = { position: 'absolute', top: '-5px', right: '-5px', backgroundColor: '#E53E3E', color: 'white', border: 'none', borderRadius: '50%', width: '18px', height: '18px', cursor: 'pointer', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' };
-const containerStyle = { backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: "'Inter', sans-serif" };
-const headerTitleStyle = { color: '#093661', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0' };
-const headerSubStyle = { color: '#718096', fontSize: '14px', margin: 0 };
+const removeFotoBadgeStyle: any = { position: 'absolute', top: '-5px', right: '-5px', backgroundColor: '#E53E3E', color: 'white', border: 'none', borderRadius: '50%', width: '18px', height: '18px', cursor: 'pointer', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: '"Arial"' };
+const containerStyle = { backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: '"Arial"' };
+const headerTitleStyle = { color: '#093b77', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0', fontFamily: '"Arial"', letterSpacing: '-0.5px' };
+const headerSubStyle = { color: '#64748b', fontSize: '14px', margin: 0, fontFamily: '"Arial"', letterSpacing: '-0.2px' };
 const formContainerStyle = { display: 'grid', gap: '20px', padding: '30px', backgroundColor: '#F8FAFC', borderRadius: '18px', marginTop: '20px', border: '1px solid #E2E8F0' };
-const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748' };
-const inputStyle = { padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', backgroundColor: 'white' };
-const selectStyle = { ...inputStyle, width: '100%', cursor: 'pointer', fontWeight: '600', color: '#093661' };
-const submitButtonStyle: any = { padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', fontSize: '15px', transition: '0.3s', marginTop: '10px' };
+const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#093b77', fontFamily: '"Arial"', letterSpacing: '-0.1px' };
+const inputStyle = { padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', backgroundColor: 'white', fontFamily: '"Arial"', color: '#475569' };
+const selectStyle = { ...inputStyle, width: '100%', cursor: 'pointer', fontWeight: '700', color: '#093b77', fontFamily: '"Arial"' };
+const submitButtonStyle: any = { padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', fontSize: '15px', transition: '0.3s', marginTop: '10px', fontFamily: '"Arial"' };
 const dividerStyle = { height: '1px', backgroundColor: '#EDF2F7', margin: '45px 0' };
-const tableHeaderActionStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px', gap: '15px' };
-const tableTitleStyle = { fontSize: '18px', fontWeight: '700', color: '#2D3748', margin: 0 };
-const searchInputStyle = { padding: '10px 15px 10px 35px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '13px', outline: 'none' };
+const tableHeaderActionStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px', gap: '15px', fontFamily: '"Arial"' };
+const tableTitleStyle = { fontSize: '18px', fontWeight: '700', color: '#093b77', margin: 0, fontFamily: '"Arial"', letterSpacing: '-0.3px' };
+const searchInputStyle = { padding: '10px 15px 10px 35px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '13px', outline: 'none', fontFamily: '"Arial"', color: '#475569' };
 const searchIconStyle: any = { position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#A0AEC0', fontSize: '13px' };
-const filterSelectStyle = { padding: '10px 15px', borderRadius: '10px', border: '2px solid #093661', fontSize: '13px', fontWeight: '700', color: '#093661', outline: 'none', cursor: 'pointer' };
+const filterSelectStyle = { padding: '10px 15px', borderRadius: '10px', border: '2px solid #093b77', fontSize: '13px', fontWeight: '700', color: '#093b77', outline: 'none', cursor: 'pointer', fontFamily: '"Arial"' };
 const tableWrapperStyle = { overflowX: 'auto' as 'auto', border: '1px solid #E2E8F0', borderRadius: '12px' };
 const tableStyle = { borderCollapse: 'collapse' as 'collapse' };
-const thStyle = { padding: '18px 15px', textAlign: 'left' as 'left', fontSize: '11px', fontWeight: '550', color: '#718096', textTransform: 'uppercase' as 'uppercase', letterSpacing: '1px' };
-const tdStyle = { padding: '15px', fontSize: '14px', borderBottom: '1px solid #F1F5F9', verticalAlign: 'top' as 'top' };
+const thStyle = { padding: '18px 15px', textAlign: 'left' as 'left', fontSize: '11px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' as 'uppercase', letterSpacing: '1px', fontFamily: '"Arial"' };
+const tdStyle = { padding: '15px', fontSize: '14px', borderBottom: '1px solid #F1F5F9', verticalAlign: 'top' as 'top', fontFamily: '"Arial"' };
 const trStyle = { transition: '0.2s' };
 const avatarWrapperStyle = { width: '45px', height: '55px', backgroundColor: '#F1F5F9', borderRadius: '6px', overflow: 'hidden', border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'zoom-in' };
 const avatarImgStyle = { width: '100%', height: '100%', objectFit: 'cover' as 'cover' };
-const editInputStyle = { width: '100%', padding: '6px 10px', borderRadius: '6px', border: '2px solid #093661', outline: 'none', fontSize: '13px' };
-const badgeStyle = { padding: '4px 10px', borderRadius: '6px', backgroundColor: '#EBF8FF', color: '#2B6CB0', fontSize: '12px', fontWeight: '700' };
-const btnEditInline = { border: '1px solid #E2E8F0', background: 'white', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', transition: 'all 0.2s' };
-const btnDeleteInline = { border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', transition: 'all 0.2s' };
-const deleteFotoTextStyle: any = { fontSize: '11px', color: '#E53E3E', background: 'none', border: 'none', cursor: 'pointer', padding: '0', textAlign: 'left', fontWeight: 'bold', marginTop: '4px' };
+const editInputStyle = { width: '100%', padding: '6px 10px', borderRadius: '6px', border: '2px solid #093b77', outline: 'none', fontSize: '13px', fontFamily: '"Arial"', color: '#475569' };
+const badgeStyle = { padding: '4px 10px', borderRadius: '6px', backgroundColor: '#FFF5F5', color: '#C53030', fontSize: '12px', fontWeight: '700', fontFamily: '"Arial"' };
+const btnEditInline = { border: '1px solid #E2E8F0', background: 'white', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', transition: 'all 0.2s', fontFamily: '"Arial"' };
+const btnDeleteInline = { border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', transition: 'all 0.2s', fontFamily: '"Arial"' };
+const deleteFotoTextStyle: any = { fontSize: '11px', color: '#E53E3E', background: 'none', border: 'none', cursor: 'pointer', padding: '0', textAlign: 'left', fontWeight: '700', marginTop: '4px', fontFamily: '"Arial"' };

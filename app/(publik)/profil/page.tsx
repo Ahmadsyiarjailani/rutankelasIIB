@@ -6,7 +6,6 @@ import { supabase } from '../../../lib/supabase';
 
 export default function ProfilPage() {
   const navy = '#0b2d57';
-  const gold = '#f1c40f';
 
   const [pejabat, setPejabat] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +50,7 @@ export default function ProfilPage() {
   };
 
   return (
-    <div style={{ padding: '60px 0', backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ padding: '60px 0', backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: '"Roboto", Arial, sans-serif' }}>
       <style>{`
         .grid-pejabat {
           display: grid;
@@ -121,24 +120,59 @@ export default function ProfilPage() {
           width: 100%;
           line-height: 0;
         }
+
+        .custom-section-title {
+          color: #093b77;
+          font-size: 26px;
+          font-weight: bold;
+          margin-bottom: 7px;
+          font-family: "Roboto", Arial, sans-serif;
+          text-align: center;
+        }
+
+        .profile-desc-p {
+          font-size: 15px;
+          color: #475569;
+          line-height: 1.85;
+          margin-bottom: 20px;
+          text-align: justify;
+          font-family: "Roboto", Arial, sans-serif;
+        }
       `}</style>
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
         
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          style={{ marginBottom: '60px' }}
+        >
+          <h2 className="custom-section-title">Profil Rumah Tahanan Negara</h2>
+          <div style={{ width: '50px', height: '4px', background: '#ddb309', margin: '12px auto 25px', borderRadius: '2px' }}></div>
+          
+          <div style={{ marginTop: '20px' }}>
+            <p className="profile-desc-p">
+              Rumah Tahanan Negara (Rutan) merupakan unit pelaksana teknis di bawah Direktorat Jenderal Pemasyarakatan Kementerian Hukum dan Hak Asasi Manusia yang mempunyai tugas pokok untuk melaksanakan pemasyarakatan narapidana dan tahanan. Rutan berfungsi sebagai tempat penahanan sementara bagi tersangka atau terdakwa selama proses penyidikan, penuntutan, and pemeriksaan di sidang pengadilan.
+            </p>
+            <p className="profile-desc-p">
+              Dalam menjalankan tugasnya, Rutan berkomitmen penuh untuk menyelenggarakan pelayanan, perawatan, serta pengelolaan tata tertib secara profesional dan transparan. Melalui penyediaan sarana dan prasarana yang memadai serta program pembinaan kepribadian maupun kemandirian, seluruh warga binaan diarahkan agar siap berintegrasi kembali secara sehat di tengah-tengah kehidupan masyarakat.
+            </p>
+          </div>
+        </motion.div>
+
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          style={{ textAlign: 'center', marginBottom: '50px' }}
+          style={{ marginBottom: '30px', marginTop: '60px' }}
         >
-          <h1 style={{ color: '#093b77', fontSize: '26px', fontWeight: '700', marginBottom: '7px' }}>
-            Profil Pejabat Struktural
-          </h1>
-          <div style={{ width: '40px', height: '4px', background: '#ddb309', margin: '12px auto 0', borderRadius: '2px' }}></div>
+          <h1 className="custom-section-title">Profil Pejabat Structural</h1>
+          <div style={{ width: '50px', height: '4px', background: '#ddb309', margin: '12px auto 0', borderRadius: '2px' }}></div>
         </motion.div>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '100px', color: navy, fontWeight: '600' }}>Memuat data...</div>
+          <div style={{ textAlign: 'center', padding: '100px', color: '#093b77', fontWeight: 'bold', fontFamily: '"Roboto", Arial, sans-serif' }}>Memuat data...</div>
         ) : (
           <motion.div 
             className="grid-pejabat"
@@ -168,11 +202,11 @@ export default function ProfilPage() {
                   </div>
                 </div>
                 
-                <div style={{ padding: '12px 10px 18px', textAlign: 'center' }}>
-                  <h3 className="card-text-name" style={{ fontSize: '1rem', color: navy, fontWeight: '700', marginBottom: '4px', lineHeight: '1.2' }}>
+                <div style={{ padding: '12px 10px 18px', textAlign: 'center', fontFamily: '"Roboto", Arial, sans-serif' }}>
+                  <h3 className="card-text-name" style={{ fontSize: '1rem', color: '#093b77', fontWeight: 'bold', marginBottom: '4px', lineHeight: '1.2', fontFamily: '"Roboto", Arial, sans-serif' }}>
                     {p.nama}
                   </h3>
-                  <p className="card-text-pos" style={{ fontSize: '11px', color: '#64748b', marginBottom: '0', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  <p className="card-text-pos" style={{ fontSize: '11px', color: '#64748b', marginBottom: '0', fontWeight: 'normal', letterSpacing: '0.5px', fontFamily: '"Roboto", Arial, sans-serif' }}>
                     {p.jabatan}
                   </p>
                 </div>

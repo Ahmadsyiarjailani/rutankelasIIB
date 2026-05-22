@@ -114,18 +114,18 @@ export default function PtspPage() {
   };
 
   return (
-    <div className="ptsp-wrapper" style={{ padding: '60px 20px', backgroundColor: '#f8fafc', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div className="ptsp-wrapper" style={{ padding: '60px 20px', backgroundColor: '#f8fafc', minHeight: '100vh', fontFamily: "Roboto, Arial, sans-serif" }}>
       
       <div className="container-minimalist no-print" style={{ maxWidth: '850px', margin: '0 auto' }}>
         <motion.div variants={containerVariants} initial="hidden" animate="visible">
           <motion.div variants={itemVariants} style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h2 style={{ color: '#093b77', fontSize: '28px', fontWeight: '700', marginBottom: '7px' }}>Input Data Pelayanan PTSP</h2>
-            <div style={{ width: '45px', height: '4px', background: '#ddb309', margin: '0 auto 15px', borderRadius: '10px' }}></div>
+            <h2 style={{ color: '#093b77', fontSize: '28px', fontWeight: 'bold', marginBottom: '7px', fontFamily: "Roboto, Arial, sans-serif" }}>Input Data Pelayanan PTSP</h2>
+            <div style={{ width: '50px', height: '4px', background: '#ddb309', margin: '0 auto 15px', borderRadius: '2px' }}></div>
           </motion.div>
           
           <div className="form-container">
             <motion.div variants={itemVariants} className="card-form">
-              <h2 style={{ fontSize: '16px', fontWeight: '700', color: '#093b77', marginBottom: '20px' }}>Data Pendaftaran Kunjungan</h2>
+              <h2 style={{ fontSize: '16px', fontWeight: 'bold', color: '#093b77', marginBottom: '20px', fontFamily: "Roboto, Arial, sans-serif", letterSpacing: '0.3px' }}>Data Pendaftaran Kunjungan</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <label style={labelStyle}>No. Antrian</label>
                 <input type="number" className="no-spin" style={inputStyle} value={currentAntrian} readOnly />
@@ -148,7 +148,7 @@ export default function PtspPage() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="card-form">
-              <h2 style={{ fontSize: '16px', fontWeight: '700', color: '#093b77', marginBottom: '20px' }}>Data Titipan Makanan</h2>
+              <h2 style={{ fontSize: '16px', fontWeight: 'bold', color: '#093b77', marginBottom: '20px', fontFamily: "Roboto, Arial, sans-serif", letterSpacing: '0.3px' }}>Data Titipan Makanan</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <label style={labelStyle}>Nama WBP</label>
                 <input style={inputStyle} value={dataTitipan.namaWbp} onChange={(e) => setDataTitipan({...dataTitipan, namaWbp: e.target.value})} />

@@ -38,7 +38,7 @@ export default function LamanPublikRutan() {
   const [banners, setBanners] = useState<Banner[]>([
     {
       img: '/assets/Banner.png',
-      headline: "SELAMAT DATANG DI LAMAN RESMI RUMAH TAHANAN NEGARA KELAS II B KABUPATEN SINJAI",
+      headline: "SELAMAT DATANG DI LAMAN RESMI RUTAN KELAS IIB SINJAI",
       showText: true
     }
   ]);
@@ -62,7 +62,7 @@ export default function LamanPublikRutan() {
       if (data && data.length > 0) {
         const formattedBanners = data.map((item: any, index: number) => ({
           img: item.url,
-          headline: index === 0 ? "SELAMAT DATANG DI LAMAN RESMI RUMAH TAHANAN NEGARA KELAS II B KABUPATEN SINJAI" : "",
+          headline: index === 0 ? "SELAMAT DATANG DI LAMAN RESMI RUTAN KELAS IIB SINJAI" : "",
           showText: index === 0
         }));
         setBanners(formattedBanners);
@@ -218,8 +218,8 @@ export default function LamanPublikRutan() {
           <div className="services-grid">
             <motion.div variants={fadeInVariant} className="card">
               <div className="icon"><i className="fa-solid fa-calendar-days"></i></div>
-              <h3>Jadwal Kunjungan</h3>
-              <p>Lihat jam operasional kunjungan WBP</p>
+              <h3>Jadwal Kunjungan & Penitipan</h3>
+              <p>Cek jadwal operasional kunjungan</p>
               <Link href="/JadwalKunjungan" className="btn">Lihat Jadwal</Link>
             </motion.div>
             <motion.div variants={fadeInVariant} className="card">
@@ -318,7 +318,7 @@ export default function LamanPublikRutan() {
                 Data Pelayanan
               </h2>
               <h1 style={{ color: '#64748b', fontSize: '15px', lineHeight: '1.3', marginTop: '0', marginBottom: '25px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '450px' }}>
-                Informasi jumlah penghuni Rumah Tahanan Negara Kelas II B Sinjai yang diperbarui secara berkala untuk transparansi publik.
+                Informasi jumlah penghuni Rutan Kelas IIB Sinjai yang diperbarui secara berkala untuk transparansi publik.
               </h1>
               
               <div>

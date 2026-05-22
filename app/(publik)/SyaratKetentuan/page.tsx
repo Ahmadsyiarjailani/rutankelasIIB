@@ -28,9 +28,24 @@ export default function SyaratKetentuan() {
       padding: '60px 20px',
       backgroundColor: '#ffffff',
       minHeight: '70vh',
-      fontFamily: "'Plus Jakarta Sans', sans-serif"
+      fontFamily: "Roboto, Arial, sans-serif"
     }}>
-      <div className="container-minimalist" style={{ maxWidth: '850px', margin: '0 auto' }}>
+      <style dangerouslySetInnerHTML={{__html: `
+        @media (max-width: 768px) {
+          .card-responsive {
+            padding: 20px !important;
+            gap: 16px !important;
+          }
+          .title-responsive {
+            font-size: 16px !important;
+          }
+          .desc-responsive {
+            font-size: 14px !important;
+          }
+        }
+      `}} />
+
+      <div className="container-minimalist" style={{ maxWidth: '1000px', margin: '0 auto' }}>
         
         <motion.div 
           className="section-title" 
@@ -42,17 +57,18 @@ export default function SyaratKetentuan() {
           <h2 style={{ 
             color: '#093b77', 
             fontSize: '28px', 
-            fontWeight: '700', 
-            marginBottom: '7px' 
+            fontWeight: 'bold', 
+            marginBottom: '7px',
+            fontFamily: "Roboto, Arial, sans-serif"
           }}>
             Ketentuan Kunjungan
           </h2>
           <div className="underline" style={{
-            width: '45px',
+            width: '50px',
             height: '4px',
             background: '#ddb309',
             margin: '0 auto',
-            borderRadius: '10px'
+            borderRadius: '2px'
           }}></div>
         </motion.div>
 
@@ -69,58 +85,58 @@ export default function SyaratKetentuan() {
         >
           
           <motion.div 
-            className="k-card" 
+            className="k-card card-responsive" 
             variants={itemVariants}
             style={cardStyle}
           >
-            <div className="k-icon-wrapper" style={iconWrapperStyle}>
-              <i className="fa-solid fa-id-card"></i>
+            <div className="k-icon-wrapper" style={{ ...iconWrapperStyle, color: '#093b77', background: '#f0f7ff' }}>
+              <i className="fa-solid fa-id-card" style={{ fontSize: '24px' }}></i>
             </div>
-            <div className="k-info">
-              <h4 style={titleStyle}>Identitas Resmi</h4>
-              <p style={descStyle}>Wajib Membawa Identitas Resmi (KTP, KK, SIM & KARTU PELAJAR)</p>
+            <div className="k-info" style={{ flex: 1, minWidth: 0 }}>
+              <h4 className="title-responsive" style={titleStyle}>Identitas Resmi</h4>
+              <p className="desc-responsive" style={descStyle}>Wajib Membawa Identitas Resmi (KTP, KK, SIM & KARTU PELAJAR)</p>
             </div>
           </motion.div>
 
           <motion.div 
-            className="k-card" 
+            className="k-card card-responsive" 
             variants={itemVariants}
             style={cardStyle}
           >
-            <div className="k-icon-wrapper" style={iconWrapperStyle}>
-              <i className="fa-solid fa-file-signature"></i>
+            <div className="k-icon-wrapper" style={{ ...iconWrapperStyle, color: '#093b77', background: '#f0f7ff' }}>
+              <i className="fa-solid fa-file-signature" style={{ fontSize: '24px' }}></i>
             </div>
-            <div className="k-info">
-              <h4 style={titleStyle}>Izin Pihak Penahan</h4>
-              <p style={descStyle}>Wajib Membawa Surat Izin Dari Pihak Penahan (Bagi Tahanan)</p>
+            <div className="k-info" style={{ flex: 1, minWidth: 0 }}>
+              <h4 className="title-responsive" style={titleStyle}>Izin Pihak Penahan</h4>
+              <p className="desc-responsive" style={descStyle}>Wajib Membawa Surat Izin Dari Pihak Penahan (Bagi Tahanan)</p>
             </div>
           </motion.div>
 
           <motion.div 
-            className="k-card" 
+            className="k-card card-responsive" 
             variants={itemVariants}
             style={cardStyle}
           >
-            <div className="k-icon-wrapper" style={iconWrapperStyle}>
-              <i className="fa-solid fa-shirt"></i>
+            <div className="k-icon-wrapper" style={{ ...iconWrapperStyle, color: '#093b77', background: '#f0f7ff' }}>
+              <i className="fa-solid fa-shirt" style={{ fontSize: '24px' }}></i>
             </div>
-            <div className="k-info">
-              <h4 style={titleStyle}>Etika Berpakaian</h4>
-              <p style={descStyle}>Dilarang Menggunakan celana Pendek</p>
+            <div className="k-info" style={{ flex: 1, minWidth: 0 }}>
+              <h4 className="title-responsive" style={titleStyle}>Etika Berpakaian</h4>
+              <p className="desc-responsive" style={descStyle}>Dilarang Menggunakan celana Pendek</p>
             </div>
           </motion.div>
 
           <motion.div 
-            className="k-card" 
+            className="k-card card-responsive" 
             variants={itemVariants}
             style={cardStyle}
           >
-            <div className="k-icon-wrapper" style={iconWrapperStyle}>
-              <i className="fa-solid fa-calendar-xmark"></i>
+            <div className="k-icon-wrapper" style={{ ...iconWrapperStyle, color: '#093b77', background: '#f0f7ff' }}>
+              <i className="fa-solid fa-calendar-xmark" style={{ fontSize: '24px' }}></i>
             </div>
-            <div className="k-info">
-              <h4 style={titleStyle}>Hari Libur & tanggal Merah</h4>
-              <p style={descStyle}>Hari Minggu dan Libur Nasional Kunjungan Ditiadakan</p>
+            <div className="k-info" style={{ flex: 1, minWidth: 0 }}>
+              <h4 className="title-responsive" style={titleStyle}>Hari Libur & tanggal Merah</h4>
+              <p className="desc-responsive" style={descStyle}>Hari Minggu dan Libur Nasional Kunjungan Ditiadakan</p>
             </div>
           </motion.div>
 
@@ -132,39 +148,38 @@ export default function SyaratKetentuan() {
 
 const cardStyle = {
   background: '#ffffff',
-  padding: '22px 25px',
+  padding: '30px',
   borderRadius: '16px',
   display: 'flex',
-  alignItems: 'center',
-  gap: '20px',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.03)',
+  alignItems: 'flex-start',
+  gap: '24px',
+  boxShadow: '0 4px 25px rgba(0, 0, 0, 0.03)',
   border: '1px solid #f1f5f9',
   cursor: 'default'
 };
 
 const iconWrapperStyle = {
-  width: '55px',
-  height: '55px',
-  minWidth: '55px',
-  background: '#f1f5f9',
-  borderRadius: '12px',
+  width: '60px',
+  height: '60px',
+  minWidth: '60px',
+  borderRadius: '14px',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: '22px',
-  color: '#093b77'
+  justifyContent: 'center'
 };
 
 const titleStyle = {
-  margin: '0 0 4px 0',
-  fontSize: '17px',
+  margin: '0 0 6px 0',
+  fontSize: '16px',
   color: '#093b77',
-  fontWeight: '700'
+  fontWeight: 'bold',
+  letterSpacing: '0.3px'
 };
 
 const descStyle = {
   margin: 0,
-  color: '#64748b',
-  fontSize: '14px',
-  lineHeight: '1.6'
+  color: '#475569',
+  fontSize: '15px',
+  fontWeight: 'normal',
+  lineHeight: '1.4'
 };

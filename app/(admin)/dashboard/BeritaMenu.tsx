@@ -21,7 +21,7 @@ export default function BeritaMenu({
   }, []);
 
   return (
-    <div style={{ padding: isMobile ? '15px' : '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: isMobile ? '20px' : '40px', backgroundColor: '#FFFFFF', borderRadius: '20px', fontFamily: '"Arial"' }}>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
       <style>{`
         .btn-press:active {
@@ -32,15 +32,15 @@ export default function BeritaMenu({
       `}</style>
       
       <div style={{ marginBottom: '35px' }}>
-        <h3 style={{ color: '#093661', fontSize: isMobile ? '18px' : '22px', fontWeight: '700', margin: '0 0 5px 0' }}>
+        <h3 style={{ color: '#093b77', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0', letterSpacing: '-0.5px' }}>
           Posting Berita Terbaru
         </h3>
-        <p style={{ color: '#718096', fontSize: isMobile ? '13px' : '14px', margin: 0 }}>
+        <p style={{ color: '#718096', fontSize: '14px', margin: 0, letterSpacing: '-0.2px' }}>
           Tulis dan publikasikan artikel atau informasi terbaru mengenai kegiatan satuan kerja.
         </p>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', backgroundColor: '#F8FAFC', padding: isMobile ? '20px' : '30px', borderRadius: '18px', border: '1px solid #E2E8F0' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', backgroundColor: '#F8FAFC', padding: '30px', borderRadius: '18px', border: '1px solid #E2E8F0' }}>
         <div>
           <label style={labelStyle}>Judul Berita</label>
           <input 
@@ -91,8 +91,8 @@ export default function BeritaMenu({
           onMouseLeave={() => setIsHover(false)}
           style={{ 
             ...buttonStyle, 
-            backgroundColor: isHover ? '#0d4a85' : '#093661',
-            boxShadow: isHover ? '0 4px 12px rgba(9, 54, 97, 0.2)' : 'none'
+            backgroundColor: isHover ? '#072e5c' : '#093b77',
+            transition: '0.2s'
           }}
         >
           Publikasikan Berita
@@ -101,8 +101,8 @@ export default function BeritaMenu({
 
       <div style={{ height: '1px', backgroundColor: '#EDF2F7', margin: '45px 0' }} />
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <h4 style={{ color: '#2D3748', fontSize: '18px', fontWeight: '700', margin: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
+        <h4 style={{ color: '#093b77', fontSize: '18px', fontWeight: '700', margin: 0, letterSpacing: '-0.3px' }}>
           Riwayat Berita
         </h4>
       </div>
@@ -111,35 +111,37 @@ export default function BeritaMenu({
         <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'white', tableLayout: 'fixed' }}>
           <thead>
             <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #EDF2F7' }}>
-              <th style={{ ...thStyle, width: isMobile ? '50%' : '40%' }}>Judul Berita</th>
-              {!isMobile && <th style={{ ...thStyle, width: '20%' }}>Tanggal</th>}
-              <th style={{ ...thStyle, width: isMobile ? '25%' : '20%' }}>Kategori</th>
-              <th style={{ ...thStyle, textAlign: 'center', width: isMobile ? '25%' : '20%' }}>Aksi</th>
+              <th style={{ ...thStyle, width: isMobile ? '50%' : '40%', textAlign: 'left' }}>Judul Berita</th>
+              {!isMobile && <th style={{ ...thStyle, width: '20%', textAlign: 'left' }}>Tanggal</th>}
+              <th style={{ ...thStyle, width: isMobile ? '25%' : '20%', textAlign: 'left' }}>Kategori</th>
+              <th style={{ ...thStyle, width: isMobile ? '25%' : '20%', textAlign: 'center' }}>Aksi</th>
             </tr>
           </thead>
           <tbody>
             {daftarBerita.length > 0 ? (
               daftarBerita.map((news: any) => (
-                <tr key={news.id} style={{ borderBottom: '1px solid #F1F5F9', transition: '0.2s' }}>
+                <tr key={news.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
                   <td style={{ ...tdStyle, fontWeight: '700', color: '#2D3748' }}>
-                    <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', letterSpacing: '-0.2px', lineHeight: '1.2' }}>
                       {news.judul}
                     </div>
                   </td>
-                  {!isMobile && <td style={{ ...tdStyle, color: '#718096' }}>{news.tanggal}</td>}
+                  {!isMobile && <td style={{ ...tdStyle, color: '#718096', letterSpacing: '-0.2px' }}>{news.tanggal}</td>}
                   <td style={tdStyle}>
                     <span 
                       onClick={() => toggleStatusBerita(news.id, news.status)} 
                       style={{ 
-                        color: news.status === 'Informasi' ? '#093661' : '#38A169', 
-                        fontWeight: '800', 
+                        color: news.status === 'Informasi' ? '#093b77' : '#38A169', 
+                        fontWeight: '700', 
                         cursor: 'pointer', 
-                        backgroundColor: news.status === 'Informasi' ? '#09366110' : '#F0FFF4', 
+                        backgroundColor: news.status === 'Informasi' ? '#093b7710' : '#F0FFF4', 
                         padding: '6px 12px', 
                         borderRadius: '8px',
                         fontSize: '11px',
                         textTransform: 'uppercase',
-                        border: news.status === 'Informasi' ? '1px solid #09366120' : '1px solid #C6F6D5'
+                        border: news.status === 'Informasi' ? '1px solid #093b7720' : '1px solid #C6F6D5',
+                        letterSpacing: '-0.1px',
+                        fontFamily: '"Arial"'
                       }}
                     >
                       {news.status || 'Informasi'}
@@ -158,7 +160,7 @@ export default function BeritaMenu({
               ))
             ) : (
               <tr>
-                <td colSpan={isMobile ? 3 : 4} style={{ textAlign: 'center', padding: '100px 20px', color: '#A0AEC0', fontSize: '14px', fontStyle: 'italic' }}>
+                <td colSpan={isMobile ? 3 : 4} style={{ textAlign: 'center', padding: '60px 20px', color: '#A0AEC0', fontSize: '14px', verticalAlign: 'middle', letterSpacing: '-0.2px' }}>
                   Belum ada berita yang dipublikasikan.
                 </td>
               </tr>
@@ -170,10 +172,10 @@ export default function BeritaMenu({
   );
 }
 
-const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748' };
-const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', transition: '0.3s', backgroundColor: 'white', boxSizing: 'border-box' as 'border-box' };
-const selectStyle = { ...inputStyle, cursor: 'pointer', fontWeight: '600', color: '#093661' };
-const buttonStyle = { width: '100%', padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontSize: '15px', fontWeight: '800', cursor: 'pointer', transition: '0.3s', display: 'flex', justifyContent: 'center', alignItems: 'center' };
-const thStyle = { padding: '18px 20px', textAlign: 'left' as 'left', fontSize: '11px', fontWeight: '800', color: '#718096', textTransform: 'uppercase' as 'uppercase', letterSpacing: '1px' };
-const tdStyle = { padding: '20px', fontSize: '14px', color: '#4A5568' };
-const deleteBtnStyle = { color: '#E53E3E', border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', transition: '0.2s' };
+const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#2D3748', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', fontSize: '14px', outline: 'none', backgroundColor: 'white', boxSizing: 'border-box' as 'border-box', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const selectStyle = { ...inputStyle, cursor: 'pointer', fontWeight: '700', color: '#093b77' };
+const buttonStyle: any = { width: '100%', padding: '16px', color: 'white', border: 'none', borderRadius: '12px', fontSize: '15px', fontWeight: '700', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: '"Arial"', letterSpacing: '-0.2px' };
+const thStyle = { padding: '18px 20px', fontSize: '11px', fontWeight: '700', color: '#718096', letterSpacing: '0.5px', fontFamily: '"Arial"' };
+const tdStyle = { padding: '20px', fontSize: '14px', color: '#4A5568', fontFamily: '"Arial"' };
+const deleteBtnStyle = { color: '#E53E3E', border: '1px solid #FED7D7', background: '#FFF5F5', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', fontFamily: '"Arial"', letterSpacing: '-0.2px' };

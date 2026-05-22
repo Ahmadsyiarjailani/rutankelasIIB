@@ -51,7 +51,7 @@ export default function KaryaBinaanPage() {
   };
 
   return (
-    <div style={{ padding: '60px 0', backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ padding: '60px 0', backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "Roboto, Arial, sans-serif" }}>
       <style>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }
@@ -91,7 +91,13 @@ export default function KaryaBinaanPage() {
           transition={{ duration: 0.8 }}
           style={{ textAlign: 'center', marginBottom: '60px' }}
         >
-          <h1 style={{ color: '#093b77', fontSize: '28px', fontWeight: '700', marginBottom: '7px' }}>
+          <h1 style={{ 
+            color: '#093b77', 
+            fontSize: '28px', 
+            fontWeight: 'bold', 
+            marginBottom: '7px',
+            fontFamily: "Roboto, Arial, sans-serif"
+          }}>
             Hasil Karya Warga Binaan
           </h1>
           <p style={{ color: '#64748b', margin: '0' }}>Mendukung kreativitas dan kemandirian Rutan Sinjai</p>

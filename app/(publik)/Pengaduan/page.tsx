@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
@@ -26,7 +27,7 @@ export default function PengaduanPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    loading(true);
 
     try {
       const { error } = await supabase
@@ -55,35 +56,35 @@ export default function PengaduanPage() {
   };
 
   return (
-    <section style={{ padding: '60px 0', backgroundColor: '#f9f9f9', minHeight: '80vh', fontFamily: 'sans-serif' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
+    <section style={{ padding: '60px 20px', backgroundColor: '#ffffff', minHeight: '70vh', fontFamily: '"Roboto", Arial, sans-serif' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto', width: '100%' }}>
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          style={{ background: '#fff', padding: isMobile ? '25px' : '40px', borderRadius: '12px', border: '1px solid #e0e0e0' }}
+          style={{ background: '#ffffff', padding: isMobile ? '30px 20px' : '50px 40px', borderRadius: '16px', boxShadow: '0 4px 25px rgba(0, 0, 0, 0.03)', border: '1px solid #f1f5f9' }}
         >
-          <h2 style={{ textAlign: 'center', color: '#0b2d57', marginBottom: '30px', fontWeight: 'bold' }}>Layanan Pengaduan Publik</h2>
+          <h2 style={{ textAlign: 'center', color: '#093b77', marginBottom: '35px', fontWeight: 'bold', fontSize: '28px', fontFamily: '"Roboto", Arial, sans-serif' }}>Layanan Pengaduan Publik</h2>
           
-          <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Nama Lengkap Pelapor:</label>
-              <input type="text" required value={namaPelapor} onChange={(e) => setNamaPelapor(e.target.value)} style={{ width: '100%', padding: '14px', border: '1px solid #e0e0e0', borderRadius: '8px', outline: 'none' }} />
+          <form onSubmit={handleSubmit} style={{ fontFamily: '"Roboto", Arial, sans-serif' }}>
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', marginBottom: '10px', fontWeight: 'bold', color: '#093b77', fontSize: '15px' }}>Nama Lengkap Pelapor:</label>
+              <input type="text" required value={namaPelapor} onChange={(e) => setNamaPelapor(e.target.value)} style={{ width: '100%', padding: '14px 16px', border: '1px solid #e2e8f0', borderRadius: '12px', outline: 'none', fontSize: '15px', color: '#475569', fontFamily: '"Roboto", Arial, sans-serif', boxSizing: 'border-box' }} />
             </div>
 
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Email / No. HP (Kontak):</label>
-              <input type="text" required value={kontak} onChange={(e) => setKontak(e.target.value)} style={{ width: '100%', padding: '14px', border: '1px solid #e0e0e0', borderRadius: '8px', outline: 'none' }} />
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', marginBottom: '10px', fontWeight: 'bold', color: '#093b77', fontSize: '15px' }}>Email / No. HP (Kontak):</label>
+              <input type="text" required value={kontak} onChange={(e) => setKontak(e.target.value)} style={{ width: '100%', padding: '14px 16px', border: '1px solid #e2e8f0', borderRadius: '12px', outline: 'none', fontSize: '15px', color: '#475569', fontFamily: '"Roboto", Arial, sans-serif', boxSizing: 'border-box' }} />
             </div>
 
-            <div style={{ marginBottom: '25px' }}>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Isi Detail Pengaduan:</label>
-              <textarea required value={isiPengaduan} onChange={(e) => setIsiPengaduan(e.target.value)} style={{ width: '100%', padding: '14px', border: '1px solid #e0e0e0', borderRadius: '8px', minHeight: '150px', outline: 'none' }}></textarea>
+            <div style={{ marginBottom: '32px' }}>
+              <label style={{ display: 'block', marginBottom: '10px', fontWeight: 'bold', color: '#093b77', fontSize: '15px' }}>Isi Detail Pengaduan:</label>
+              <textarea required value={isiPengaduan} onChange={(e) => setIsiPengaduan(e.target.value)} style={{ width: '100%', padding: '14px 16px', border: '1px solid #e2e8f0', borderRadius: '12px', minHeight: '160px', outline: 'none', fontSize: '15px', color: '#475569', fontFamily: '"Roboto", Arial, sans-serif', boxSizing: 'border-box', resize: 'vertical', lineHeight: '1.6' }}></textarea>
             </div>
 
             <button type="submit" disabled={loading} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}
-              style={{ width: '100%', padding: '16px', backgroundColor: loading ? '#999' : (isHover ? '#004080' : '#0b2d57'), color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: loading ? 'not-allowed' : 'pointer', transition: 'background 0.2s' }}>
+              style={{ width: '100%', padding: '16px 32px', backgroundColor: loading ? '#94a3b8' : (isHover ? '#052347' : '#093b77'), color: '#ffffff', border: 'none', borderRadius: '12px', fontWeight: 'bold', fontSize: '16px', cursor: loading ? 'not-allowed' : 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 15px rgba(9, 59, 119, 0.15)', transform: isHover && !loading ? 'translateY(-2px)' : 'translateY(0)', fontFamily: '"Roboto", Arial, sans-serif' }}>
               {loading ? 'Sedang Mengirim...' : 'Kirim Laporan Pengaduan'}
             </button>
           </form>

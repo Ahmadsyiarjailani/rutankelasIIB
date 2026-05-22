@@ -71,7 +71,7 @@ export default function RootLayout({ children }: LayoutProps) {
                     flexShrink: 0
                   }} 
                 />
-                <span>Rutan Sinjai<br /><small style={{ fontWeight: 'normal' }}>Kelas IIB</small></span>
+                <span>Rutan<br /><small style={{ fontWeight: 'normal' }}>Kelas IIB Sinjai</small></span>
               </div>
 
               <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: LayoutProps) {
                   <a href="#"><i className="fa-solid fa-circle-info"></i> Layanan</a>
                   <ul className="dropdown-menu">
                     <li><a href="/Layanan/informasi-layanan">Informasi Layanan</a></li>
-                    <li><a href="/Layanan/administrasi">Administrasi</a></li>
+                    <li><a href="/Layanan/survei">Survei</a></li>
                     <li><a href="/Layanan/ptsp">Pusat Terpadu (PTSP)</a></li>
                   </ul>
                 </li>
@@ -140,8 +140,8 @@ export default function RootLayout({ children }: LayoutProps) {
                           </a>
                         </li>
                         <li className={activeItem === 'admin' ? 'active-item-blue' : ''}>
-                          <a href="#" onClick={(e) => { e.preventDefault(); handleItemClick('admin', '/Layanan/administrasi'); }}>
-                            Administrasi
+                          <a href="#" onClick={(e) => { e.preventDefault(); handleItemClick('admin', '/Layanan/survei'); }}>
+                            Survei
                           </a>
                         </li>
                         <li className={activeItem === 'ptsp' ? 'active-item-blue' : ''}>
@@ -179,8 +179,7 @@ export default function RootLayout({ children }: LayoutProps) {
                     <p>Pemasyarakatan Kanwil</p>
                     <p>Direktorat Jenderal</p>
                     <p>Pemasyarakatan Sulsel</p>
-                    <p>Rumah Tahanan Negara Kelas</p>
-                    <p>IIB Sinjai</p>
+                    <p>Rutan Kelas IIB Sinjai</p>
                   </div>
                 </div>
 
@@ -199,10 +198,9 @@ export default function RootLayout({ children }: LayoutProps) {
                   <h4>Profil Unit Pelaksana Teknis</h4>
                   <ul>
                     <li><a href="/profil/sejarah">Sejarah Pemasyarakatan</a></li>
-                    <li><a href="/profil/pejabat">Selayang Pandang Satuan Kerja</a></li>
                     <li><a href="/profil/tugas-fungsi">Kedudukan Tugas dan Fungsi</a></li>
-                    <li><a href="/profil/visi-misi">Visi Misi dan Tata Nilai</a></li>
-                    <li><a href="#">Mars Pemasyarakatan</a></li>
+                    <li><a href="/profil/visi-misi">Visi Misi</a></li>
+                    <li><a href="#">Mars Keminipas</a></li>
                   </ul>
                 </div>
                 
@@ -226,6 +224,15 @@ export default function RootLayout({ children }: LayoutProps) {
             </div>
           </footer>
         </main>
+    </div>
+  );
+}
+
+function FormInput({ label, value, ...props }: any) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <label>{label}</label>
+      <input value={value ?? ""} {...props} />
     </div>
   );
 }

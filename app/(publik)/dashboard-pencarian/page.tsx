@@ -72,17 +72,15 @@ function PencarianContent() {
                 <tr style={{ borderBottom: '2px solid #eef0f7', backgroundColor: '#f0f2f9' }}>
                   <th style={{ padding: '15px 12px', textAlign: 'center' }}>Foto</th>
                   <th style={{ padding: '15px 12px', textAlign: 'left' }}>Nama Lengkap</th>
-                  <th style={{ padding: '15px 12px', textAlign: 'center' }}>No. Reg</th>
-                  <th style={{ padding: '15px 12px', textAlign: 'left' }}>Perkara / Pasal</th>
-                  <th style={{ padding: '15px 12px', textAlign: 'center' }}>Masa Pidana</th>
-                  <th style={{ padding: '15px 12px', textAlign: 'center' }}>Ekspirasi</th>
-                  <th style={{ padding: '15px 12px', textAlign: 'center' }}>Aksi</th>
+                  <th style={{ padding: '15px 12px', textAlign: 'center' }}>2/3 Masa Pidana</th>
+                  <th style={{ padding: '15px 12px', textAlign: 'left' }}>Perkara</th>
+                  <th style={{ padding: '15px 12px', textAlign: 'center' }}>Tanggal Bebas</th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan={7} style={{ textAlign: 'center', padding: '30px', color: '#666' }}>Memuat data...</td>
+                    <td colSpan={5} style={{ textAlign: 'center', padding: '30px', color: '#666' }}>Memuat data...</td>
                   </tr>
                 ) : filteredData.length > 0 ? (
                   filteredData.map((wbp, idx) => (
@@ -103,25 +101,16 @@ function PencarianContent() {
                       <td style={{ padding: '12px', fontWeight: 'bold', color: '#1f70b8' }}>{wbp.nama}</td>
                       <td style={{ padding: '12px', textAlign: 'center' }}>{wbp.nik}</td>
                       <td style={{ padding: '12px' }}>{wbp.kasus}</td>
-                      <td style={{ padding: '12px', textAlign: 'center' }}>{wbp.lama_pidana || '-'}</td>
                       <td style={{ padding: '12px', textAlign: 'center' }}>
                         <span style={{ backgroundColor: '#FFF5F5', color: '#E53E3E', padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold', fontSize: '12px' }}>
                           {wbp.ekspirasi || '-'}
                         </span>
                       </td>
-                      <td style={{ padding: '12px', textAlign: 'center' }}>
-                        <button 
-                          style={{ backgroundColor: '#093661', color: 'white', border: 'none', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', transition: '0.1s' }}
-                          onMouseDown={handlePress} onMouseUp={handleRelease} onMouseLeave={handleRelease}
-                        >
-                          Pilih
-                        </button>
-                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} style={{ textAlign: 'center', padding: '30px', color: '#999' }}>Data tidak ditemukan</td>
+                    <td colSpan={5} style={{ textAlign: 'center', padding: '30px', color: '#999' }}>Data tidak ditemukan</td>
                   </tr>
                 )}
               </tbody>
