@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import DetailBeritaClient from './DetailBeritaClient';
+import DetailBeritaClient from './DetailBerita';
 
 const supabase = createClient(
   'https://xnwqcxaehvaqxzodqidc.supabase.co', 
