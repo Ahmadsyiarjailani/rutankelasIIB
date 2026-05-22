@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import DetailBeritaClient from './DetailBerita';
+import DetailBerita from './DetailBerita';
 
 const supabase = createClient(
   'https://xnwqcxaehvaqxzodqidc.supabase.co', 
@@ -17,5 +17,5 @@ export default async function Page({ params }: { params: { id: string } }) {
   const { data: berita } = await supabase.from('daftar_berita').select('*').eq('id', id).maybeSingle();
   const { data: list } = await supabase.from('daftar_berita').select('id, judul, tanggal, status, img').neq('id', id);
 
-  return <DetailBeritaClient initialBerita={berita} initialList={list || []} />;
+  return <DetailBerita initialBerita={berita} initialList={list || []} />;
 }
