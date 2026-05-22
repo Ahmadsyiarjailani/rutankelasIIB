@@ -8,6 +8,11 @@ const supabase = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhud3FjeGFlaHZhcXh6b2RxaWRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk0OTE4NDAsImV4cCI6MjA4NTA2Nzg0MH0.RLjUPr-7Qez5gUcAQUOJ-3TPPIf_CfGeOE2gSKqHz7s'
 );
 
+export async function generateStaticParams() {
+  const { data: list } = await supabase.from('daftar_berita').select('id');
+  return list ? list.map((item) => ({ id: String(item.id) })) : [];
+}
+
 export default function DetailBerita() {
   const params = useParams();
   const router = useRouter();
@@ -110,25 +115,19 @@ export default function DetailBerita() {
         .sidebar { width: 320px; }
         .sidebar-box { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
         .sidebar-title { color: #002e5b; font-size: 18px; font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; }
-        
         .news-item { margin-bottom: 20px; cursor: pointer; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
         .news-item h4 { margin: 0 0 5px 0; font-size: 14px; color: #333; transition: color 0.2s; line-height: 1.4; font-weight: 600; }
         .news-item:hover h4 { color: #007bff; }
         .news-item small { color: #aaa; font-size: 11px; }
-
         .cat-item { display: block; padding: 10px 0; color: #555; text-decoration: none; font-size: 14px; cursor: pointer; transition: 0.2s; border-bottom: 1px solid #f9f9f9; }
         .cat-item:hover { color: #007bff; }
         .cat-aktif { color: #007bff; font-weight: bold; }
-
         .meta-ikon { color: #007bff; margin-right: 5px; }
         .form-input { padding: 12px; border: 1px solid #ddd; border-radius: 4px; outline: none; font-size: 14px; width: 100%; }
-        
         .btn-submit { margin-top: 15px; padding: 12px 25px; background-color: #002e5b; color: #ffffff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
         .btn-submit:hover { background-color: #004080; }
-
         .btn-search { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background-color: #002e5b; color: #ffffff; border: none; border-radius: 4px; width: 35px; height: 35px; cursor: pointer; transition: background-color 0.2s; }
         .btn-search:hover { background-color: #004080; }
-
         @media (max-width: 992px) { .container-utama { flex-direction: column; } .sidebar { width: 100%; } }
       `}} />
 
@@ -154,19 +153,6 @@ export default function DetailBerita() {
             style={{ lineHeight: '1.8', color: '#444', fontSize: '16px', textAlign: 'justify', whiteSpace: 'pre-line' }} 
             dangerouslySetInnerHTML={{ __html: berita.isi }} 
           />
-
-          <div style={{ marginTop: '60px' }}>
-            <h3 style={{ margin: '0 0 20px 0', color: '#333', fontSize: '20px', fontWeight: 'bold' }}>0 Komentar</h3>
-            <div style={{ backgroundColor: '#f8f9fa', padding: '30px', borderRadius: '8px' }}>
-              <h4 style={{ marginTop: 0, marginBottom: '20px' }}>Kirim Komentar</h4>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
-                <input type="text" placeholder="Nama" className="form-input" />
-                <input type="email" placeholder="Email" className="form-input" />
-              </div>
-              <textarea placeholder="Pesan Anda" className="form-input" style={{ height: '100px', resize: 'none' }}></textarea>
-              <button className="btn-submit">Kirim</button>
-            </div>
-          </div>
         </div>
 
         <div className="sidebar">
@@ -201,7 +187,7 @@ export default function DetailBerita() {
             <div style={{ marginTop: '15px' }}>
               {beritaDisplay.length > 0 ? (
                 beritaDisplay.map((item) => (
-                  <div key={item.id} className="news-item" onClick={() => window.location.href = `/berita/${item.id}`}>
+                  <div key={item.id} className="news-item" onClick={() => router.push(`/berita/${item.id}`)}>
                     <h4>{item.judul}</h4>
                     <small><i className="fa-regular fa-calendar" style={{ marginRight: '5px' }}></i>{item.tanggal}</small>
                   </div>
