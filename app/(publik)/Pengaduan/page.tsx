@@ -27,7 +27,7 @@ export default function PengaduanPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    loading(true);
+    setLoading(true);
 
     try {
       const { error } = await supabase
