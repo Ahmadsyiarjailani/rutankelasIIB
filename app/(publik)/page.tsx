@@ -315,7 +315,7 @@ export default function LamanPublikRutan() {
               style={{ textAlign: 'center' }}
             >
               <h2 style={{ color: '#093661', fontWeight: '700', fontSize: isMobile ? '28px' : '40px', lineHeight: '1.2', marginTop: '0', marginBottom: '15px' }}>
-                Data Pelayanan
+                DATA PELAYANAN
               </h2>
               <h1 style={{ color: '#64748b', fontSize: '15px', lineHeight: '1.3', marginTop: '0', marginBottom: '25px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '450px' }}>
                 Informasi jumlah penghuni Rutan Kelas IIB Sinjai yang diperbarui secara berkala untuk transparansi publik.
