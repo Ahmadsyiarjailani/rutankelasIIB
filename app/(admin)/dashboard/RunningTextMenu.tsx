@@ -94,6 +94,6 @@ export default function RunningTextMenu() {
   );
 }
 
-const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '13px', fontWeight: '700', color: '#093b77', fontFamily: '"Arial"', letterSpacing: '-0.1px' };
-const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', outline: 'none', fontSize: '14px', boxSizing: 'border-box' as 'border-box', backgroundColor: 'white', transition: '0.3s', fontFamily: '"Arial"', color: '#475569', letterSpacing: '-0.2px' };
+const labelStyle = { display: 'block', marginBottom: '10px', fontSize: '17px', fontWeight: '700', color: '#093b77', fontFamily: '"Arial"', letterSpacing: '-0.1px' };
+const inputStyle = { width: '100%', padding: '12px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', outline: 'none', fontSize: '14px', boxSizing: 'border-box' as 'border-box', backgroundColor: 'white', transition: '0.3s', fontFamily: '"Arial"', color: '#5b6b85', letterSpacing: '-0.2px' };
 const buttonStyle: any = { padding: '16px 30px', color: 'white', border: 'none', borderRadius: '12px', fontSize: '15px', fontWeight: '700', cursor: 'pointer', transition: '0.3s', fontFamily: '"Arial"', letterSpacing: '-0.1px' };

@@ -205,11 +205,11 @@ export default function ProdukMenu({ daftarKarya = [], fetchKarya, handleDelete 
         <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
           <thead>
             <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #EDF2F7' }}>
-              <th style={{ ...thStyle, width: '15%' }}>Foto</th>
-              <th style={{ ...thStyle, width: '30%' }}>Nama Produk</th>
-              <th style={{ ...thStyle, width: '20%' }}>Kategori</th>
-              <th style={{ ...thStyle, width: '15%' }}>Harga</th>
-              <th style={{ ...thStyle, textAlign: 'center', width: '20%' }}>Navigasi</th>
+              <th style={{ ...thStyle, width: '15%' }}>FOTO</th>
+              <th style={{ ...thStyle, width: '30%' }}>NAMA PRODUK</th>
+              <th style={{ ...thStyle, width: '20%' }}>KATEGORI</th>
+              <th style={{ ...thStyle, width: '15%' }}>HARGA</th>
+              <th style={{ ...thStyle, textAlign: 'center', width: '20%' }}>NAVIGASI</th>
             </tr>
           </thead>
           <tbody>

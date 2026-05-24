@@ -166,11 +166,11 @@ export default function PejabatMenu({ setSelectedImage }: any) {
         <table style={{...tableStyle, width: '100%', tableLayout: 'fixed' }}>
           <thead>
             <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #EDF2F7' }}>
-              <th style={{ ...thStyle, width: '80px' }}>Foto</th>
-              <th style={thStyle}>Biodata</th>
-              <th style={thStyle}>Jabatan</th>
-              <th style={{ ...thStyle, width: '100px', textAlign: 'center' }}>Urutan</th>
-              <th style={{ ...thStyle, textAlign: 'center', width: '150px' }}>Navigasi</th>
+              <th style={{ ...thStyle, width: '80px' }}>FOTO</th>
+              <th style={thStyle}>BIODATA</th>
+              <th style={thStyle}>JABATAN</th>
+              <th style={{ ...thStyle, width: '100px', textAlign: 'center' }}>URUTAN</th>
+              <th style={{ ...thStyle, textAlign: 'center', width: '150px' }}>NAVIGASI</th>
             </tr>
           </thead>
           <tbody>

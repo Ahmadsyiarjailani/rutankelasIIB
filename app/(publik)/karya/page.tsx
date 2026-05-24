@@ -154,7 +154,7 @@ export default function KaryaBinaanPage() {
                     </span>
                     <motion.button 
                       className="btn-beli"
-                      onClick={() => window.open(`https://wa.me/6281356640175?text=Halo, saya ingin memesan: ${item.nama}`, '_blank')}
+                      onClick={() => window.open(`https://wa.me/6285167687099?text=Halo, saya ingin memesan: ${item.nama}`, '_blank')}
                       onMouseDown={() => setPressedId(item.id)}
                       onMouseUp={() => setPressedId(null)}
                       onMouseLeave={() => setPressedId(null)}

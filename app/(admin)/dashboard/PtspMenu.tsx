@@ -140,19 +140,19 @@ export default function PtspMenu() {
                 return (
                   <tr key={item.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
                     <td style={tdStyle}>
-                      <span style={{ backgroundColor: '#EBF8FF', color: '#2B6CB0', padding: '6px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: '700', letterSpacing: '-0.1px' }}>
+                      <span style={{ backgroundColor: '#EBF8FF', color: '#014a99', padding: '6px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: '700', letterSpacing: '-0.1px' }}>
                         {nomorAntrianKunjungan.toString().padStart(3, '0')}
                       </span>
                     </td>
                     <td style={tdStyle}>
-                      <div style={{ fontWeight: '700', color: '#475569', fontSize: '14px', letterSpacing: '-0.2px' }}>{item.kunjungan?.nama}</div>
+                      <div style={{ fontWeight: '700', color: '#093b77', fontSize: '14px', letterSpacing: '-0.2px' }}>{item.kunjungan?.nama}</div>
                     </td>
                     <td style={tdStyle}>
                       <div style={{ fontSize: '13px', color: '#475569', maxWidth: '200px', letterSpacing: '-0.2px' }}>{item.kunjungan?.alamat}</div>
                     </td>
                     <td style={tdStyle}>
-                      <div style={{ fontWeight: '700', color: '#475569', fontSize: '14px', letterSpacing: '-0.2px' }}>{item.kunjungan?.wbp}</div>
-                      <div style={{ fontSize: '12px', color: '#093b77', fontWeight: '700', letterSpacing: '-0.1px' }}>{item.kunjungan?.hubungan}</div>
+                      <div style={{ fontWeight: '700', color: '#093b77', fontSize: '14px', letterSpacing: '-0.2px' }}>{item.kunjungan?.wbp}</div>
+                      <div style={{ fontSize: '12px', color: '#475569c0', fontWeight: '70', letterSpacing: '-0.1px' }}>{item.kunjungan?.hubungan}</div>
                     </td>
                     <td style={tdStyle}>
                       <div style={{ fontSize: '12px', color: '#475569', fontWeight: '700', letterSpacing: '-0.1px' }}>
@@ -192,7 +192,7 @@ export default function PtspMenu() {
               {dataTitipan.length > 0 ? [...dataTitipan].reverse().map((item) => (
                 <tr key={item.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
                   <td style={tdStyle}>
-                    <span style={{ backgroundColor: '#E6FFFA', color: '#285E61', padding: '6px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: '700', letterSpacing: '-0.1px' }}>
+                    <span style={{ backgroundColor: '#EBF8FF', color: '#014a99', padding: '6px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: '700', letterSpacing: '-0.1px' }}>
                       TITIPAN
                     </span>
                   </td>

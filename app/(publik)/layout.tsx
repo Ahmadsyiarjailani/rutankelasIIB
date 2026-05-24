@@ -186,21 +186,21 @@ export default function RootLayout({ children }: LayoutProps) {
                 <div className="footer-col">
                   <h4>Instansi Terkait</h4>
                   <ul>
-                    <li><a href="#">Ditjen Pemasyarakatan</a></li>
-                    <li><a href="#">Kepolisian RI</a></li>
-                    <li><a href="#">Kejaksaan RI</a></li>
-                    <li><a href="#">Mahkamah Agung RI</a></li>
-                    <li><a href="#">Peradi</a></li>
+                    <li><a href="/Instansi/Ditjen-Pemasyarakatan">Ditjen Pemasyarakatan</a></li>
+                    <li><a href="/Instansi/Kepolisian-RI">Kepolisian RI</a></li>
+                    <li><a href="/Instansi/Kejaksaan-RI">Kejaksaan RI</a></li>
+                    <li><a href="/Instansi/Mahkamah-Agung-RI">Mahkamah Agung RI</a></li>
+                    <li><a href="/Instansi/Peradi">Peradi</a></li>
                   </ul>
                 </div>
 
                 <div className="footer-col">
                   <h4>Profil Unit Pelaksana Teknis</h4>
                   <ul>
-                    <li><a href="/profil/sejarah">Sejarah Pemasyarakatan</a></li>
-                    <li><a href="/profil/tugas-fungsi">Kedudukan Tugas dan Fungsi</a></li>
-                    <li><a href="/profil/visi-misi">Visi Misi</a></li>
-                    <li><a href="#">Mars Keminipas</a></li>
+                    <li><a href="/Instansi/Sejarah-Pemasyarakatan">Sejarah Pemasyarakatan</a></li>
+                    <li><a href="/Instansi/Kedudukan-Tugas-dan-Fungsi">Kedudukan Tugas dan Fungsi</a></li>
+                    <li><a href="/Instansi/Visi-Misi">Visi Misi</a></li>
+                    <li><a href="/Instansi/Mars-Keminipas">Mars Keminipas</a></li>
                   </ul>
                 </div>
                 

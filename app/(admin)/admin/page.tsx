@@ -49,18 +49,21 @@ export default function LoginPage() {
       position: 'fixed',
       top: 0,
       left: 0,
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      fontFamily: '"Arial"'
     }}>
       <form onSubmit={handleLogin} style={{ 
         backgroundColor: 'white', 
         padding: isMobile ? '30px 20px' : '40px', 
-        borderRadius: '16px', 
+        borderRadius: '20px', 
         width: isMobile ? '100%' : '380px', 
         maxWidth: '400px',
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        border: '1px solid #E2E8F0',
+        fontFamily: '"Arial"'
       }}>
         
         <div style={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
@@ -72,14 +75,10 @@ export default function LoginPage() {
         </div>
 
         <div style={{ textAlign: 'center', marginBottom: '25px' }}>
-          <h1 style={{ fontSize: isMobile ? '19px' : '21px', fontWeight: '800', color: '#093661', margin: 0 }}>
-            Rutan Kelas II B Sinjai
+          <h1 style={{ fontSize: isMobile ? '19px' : '21px', fontWeight: '700', color: '#093661', margin: 0, letterSpacing: '-0.5px', fontFamily: '"Arial"' }}>
+            Rutan Kelas IIB Sinjai
           </h1>
         </div>
-
-        <h2 style={{ color: '#093661', fontSize: isMobile ? '16px' : '18px', marginBottom: '20px', fontWeight: 'bold', letterSpacing: '1px', textAlign: 'center' }}>
-          Login Content Management System
-        </h2>
         
         <input 
           type="text" 
@@ -88,13 +87,16 @@ export default function LoginPage() {
           onChange={(e) => setUsername(e.target.value)} 
           style={{ 
             width: '100%', 
-            padding: '12px 15px', 
+            padding: '12px 16px', 
             margin: '8px 0', 
-            borderRadius: '8px', 
-            border: '1px solid #E2E8F0', 
+            borderRadius: '10px', 
+            border: '2px solid #E2E8F0', 
             boxSizing: 'border-box',
             outlineColor: '#093661',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontFamily: '"Arial"',
+            letterSpacing: '-0.2px',
+            backgroundColor: 'white'
           }} 
         />
         <input 
@@ -104,13 +106,16 @@ export default function LoginPage() {
           onChange={(e) => setPassword(e.target.value)} 
           style={{ 
             width: '100%', 
-            padding: '12px 15px', 
+            padding: '12px 16px', 
             margin: '8px 0', 
-            borderRadius: '8px', 
-            border: '1px solid #E2E8F0', 
+            borderRadius: '10px', 
+            border: '2px solid #E2E8F0', 
             boxSizing: 'border-box',
             outlineColor: '#093661',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontFamily: '"Arial"',
+            letterSpacing: '-0.2px',
+            backgroundColor: 'white'
           }} 
         />
         
@@ -128,16 +133,18 @@ export default function LoginPage() {
             backgroundColor: isActive ? '#05213d' : isHovered ? '#0d4a85' : '#093661',
             color: 'white', 
             border: 'none', 
-            borderRadius: '8px', 
+            borderRadius: '12px', 
             cursor: 'pointer', 
-            fontWeight: 'bold', 
+            fontWeight: '700', 
             marginTop: '15px',
             fontSize: '15px',
             transform: isActive ? 'scale(0.96)' : 'scale(1)',
-            transition: 'all 0.2s ease'
+            transition: 'all 0.2s ease',
+            fontFamily: '"Arial"',
+            letterSpacing: '-0.2px'
           }}
         >
-          Masuk ke Sistem
+          Masuk
         </button>
       </form>
     </div>

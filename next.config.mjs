@@ -1,6 +1,4 @@
-// next.config.mjs
 const nextConfig = {
-  output: "export",
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -8,4 +6,5 @@ const nextConfig = {
     unoptimized: true,
   },
 };
+
 export default nextConfig;

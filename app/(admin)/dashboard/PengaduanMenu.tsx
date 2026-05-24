@@ -112,10 +112,10 @@ export default function PengaduanMenu({
         <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'white', tableLayout: 'fixed' }}>
           <thead>
             <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #EDF2F7' }}>
-              <th style={{ ...thStyle, width: '25%', textAlign: 'left' }}>Informasi Pelapor</th>
-              <th style={{ ...thStyle, width: '35%', textAlign: 'left' }}>Detail Isi</th>
-              <th style={{ ...thStyle, width: '20%', textAlign: 'left' }}>Status</th>
-              <th style={{ ...thStyle, width: '20%', textAlign: 'center' }}>Navigasi</th>
+              <th style={{ ...thStyle, width: '25%', textAlign: 'left' }}>INFORMASI PELAPOR</th>
+              <th style={{ ...thStyle, width: '35%', textAlign: 'left' }}>DETAIL</th>
+              <th style={{ ...thStyle, width: '20%', textAlign: 'left' }}>STATUS</th>
+              <th style={{ ...thStyle, width: '20%', textAlign: 'center' }}>NAVIGASI</th>
             </tr>
           </thead>
           <tbody>

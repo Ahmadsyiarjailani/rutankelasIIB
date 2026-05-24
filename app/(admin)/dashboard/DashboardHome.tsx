@@ -16,11 +16,6 @@ export default function DashboardHome({ setActiveMenu, daftarWBP = [], daftarPen
   return (
     <div style={{ padding: isMobile ? '20px' : '40px', fontFamily: '"Arial"' }}>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-      
-      <div style={{ marginBottom: '35px' }}>
-        <h3 style={{ color: '#093b77', fontSize: '24px', fontWeight: '700', margin: '0 0 5px 0', letterSpacing: '-0.5px' }}>Selamat Datang Kembali Admin! 👋</h3>
-        <p style={{ color: '#718096', fontSize: '14px', margin: 0, letterSpacing: '-0.2px' }}>Pantau dan kelola data operasional Rutan Kelas IIB Sinjai dalam satu panel.</p>
-      </div>
 
       <div style={{ 
         display: 'grid', 
@@ -68,7 +63,7 @@ export default function DashboardHome({ setActiveMenu, daftarWBP = [], daftarPen
             <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#2ECC71', boxShadow: '0 0 10px #2ECC71' }}></div>
             <span style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '-0.2px' }}>Database Supabase: Online</span>
           </div>
-          <p style={{ fontSize: '13px', opacity: 0.8, lineHeight: '1.6', position: 'relative', zIndex: 1, letterSpacing: '-0.1px', margin: 0 }}>Server berjalan secara realtime. Semua data terenkripsi dan aman di cloud server.</p>
+          <p style={{ fontSize: '13px', opacity: 0.7, lineHeight: '1.6', position: 'relative', zIndex: 1, letterSpacing: '-0.1px', margin: 0 }}>Server berjalan secara realtime. Semua data terenkripsi dan aman di cloud server.</p>
         </div>
       </div>
     </div>
